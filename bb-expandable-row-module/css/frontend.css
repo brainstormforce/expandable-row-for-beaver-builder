@@ -1,0 +1,25 @@
+.bb-expandable-row-module {
+	width: 100%;
+}
+.bb-expandable-trigger-row {
+	cursor: pointer;
+	background-color: #c1c1c1;
+	border-radius: 4px;
+	-webkit-transition: all 0.8s ease-out;
+	-moz-transition: all 0.8s ease-out;
+	-ms-transition: all 0.8s ease-out;
+	-o-transition: all 0.8s ease-out;
+	transition: all 0.8s ease-out;
+}
+.bb-expandable-toggle-row {
+	display: none;
+	background-color: #f7f7f7;
+	border-radius: 4px;
+}
+#bber-icon {
+	-webkit-transition: all 0.4s ease-out;
+	-moz-transition: all 0.4s ease-out;
+	-ms-transition: all 0.4s ease-out;
+	-o-transition: all 0.4s ease-out;
+	transition: all 0.4s ease-out;
+}
