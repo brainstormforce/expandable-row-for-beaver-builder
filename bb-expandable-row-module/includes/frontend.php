@@ -33,6 +33,7 @@
 				<?php endif ?>
 
 			</div>
+			
 		<?php if( $settings->bber_image_type == 'icon' && $settings->bber_icon_position == 'bottom'): ?>
 			<!-- Icon at Bottom -->
 			<div><?php echo BSFBBExpandableRow::render_icon($settings->bber_row_icon); ?></div>
