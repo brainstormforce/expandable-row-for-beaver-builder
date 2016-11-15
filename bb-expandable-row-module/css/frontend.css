@@ -4,19 +4,23 @@
 .bb-expandable-trigger-row {
 	cursor: pointer;
 	background-color: #c1c1c1;
-	border-radius: 4px;
 	-webkit-transition: all 0.8s ease-out;
 	-moz-transition: all 0.8s ease-out;
 	-ms-transition: all 0.8s ease-out;
 	-o-transition: all 0.8s ease-out;
 	transition: all 0.8s ease-out;
 }
+.bber-clicked {
+	position: relative;
+-webkit-box-shadow: 0 8px 10px -8px black;
+       -moz-box-shadow: 0 8px 10px -8px black;
+            box-shadow: 0 8px 10px -8px black;
+}
 .bb-expandable-toggle-row {
 	display: none;
 	background-color: #f7f7f7;
-	border-radius: 4px;
 }
-#bber-icon {
+.bber-icon-size {
 	-webkit-transition: all 0.4s ease-out;
 	-moz-transition: all 0.4s ease-out;
 	-ms-transition: all 0.4s ease-out;

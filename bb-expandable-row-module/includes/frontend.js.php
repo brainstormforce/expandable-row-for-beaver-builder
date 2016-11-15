@@ -1,7 +1,8 @@
 jQuery(document).ready(function(){
 	jQuery(".fl-node-<?php echo $id;?> .bb-expandable-trigger-row").click(function(){
 
-		jQuery(".bb-expandable-trigger-row").toggleClass("bber-clicked");
+		jQuery(".fl-node-<?php echo $id;?> .bb-expandable-trigger-row").toggleClass("bber-clicked");
+		jQuery(".fl-node-<?php echo $id;?> .bb-expandable-toggle-row").toggleClass("bber-expanded");
 
 		// appearing effect
 		<?php if( $settings->bber_row_effect == 'slide' ): ?>
@@ -18,7 +19,7 @@ jQuery(document).ready(function(){
 			jQuery(".fl-node-<?php echo $id;?> .bber-title").text("<?php echo $settings->bber_row_title; ?>");
 
 		// toggle row icon
-		jQuery("#bber-icon").toggleClass("<?php echo $settings->bber_row_icon; ?> <?php echo $settings->bber_after_click_row_icon; ?>");
+		jQuery(".fl-node-<?php echo $id;?> #bber-icon").toggleClass("<?php echo $settings->bber_row_icon; ?> <?php echo $settings->bber_after_click_row_icon; ?>");
 
 
 	});// trigger/click

@@ -10,8 +10,12 @@ class BSFBBExpandableRow extends FLBuilderModule {
 				'dir'           => BB_EXPAND_ROW_DIR . 'bb-expandable-row-module/',
 	            'url'           => BB_EXPAND_ROW_URL . 'bb-expandable-row-module/',
 			) );
-		// enqueue jquery
-		//$this->add_js('jquery');
+	}
+	public function render_icon($icon) {
+		return '<i id="bber-icon" class="bber-icon-size '.$icon.'"></i>';
+	}
+	public function render_image($settings) {
+		return '<img src="'.$settings->bber_row_image_src.'" width="'.(($settings->bber_row_image_size!="") ? $settings->bber_row_image_size : "32" ).'"  />';
 	}
 }
 
@@ -38,6 +42,7 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
                     		'size'          => '',
                     		'placeholder'   => '',
 						),
+						// title alignment
 						'bber_title_alignment'	=> array(
 							'type'	=> 'select',
 							'label'	=> __('Title Alignment','bb-expandable-row'),
@@ -49,6 +54,15 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 								),
 							'default' => 'default',
 							'help'	=> 'Overall alignment of both titles',
+						),
+						// border radius
+						'bber_border_radius'	=> array(
+							'type'	=> 'text',
+							'label'         => __('Border Radius', 'bb-expandable-row'),
+							'maxlength'     => '3',
+                    		'size'          => '3',
+                    		'placeholder'   => '4',
+                    		'description'	=> __('px','bb-expandable-row')
 						),
 					)//fields
 				),// Title section
@@ -110,18 +124,18 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						'toggle'	=> array(
 								'icon'	=> array(
 										'sections'	=> array('row-icon','after-click-row-icon'),
-										'fields'	=> array('bber_icon_position')
+										'fields'	=> array('bber_icon_position','bber_row_icon_size')
 									),
 								'image' => array(
 										'sections'	=> array('row-background-image'),
-										'fields'	=> array('bber_icon_position')
+										'fields'	=> array('bber_image_position','bber_row_image_size')
 									)
 							),
 						),// image type
 						// position
 						'bber_icon_position'=> array(
 							'type'	=> 'select',
-							'label' => __('Icon/Image Position', 'bb-expandable-row'),
+							'label' => __('Icon Position', 'bb-expandable-row'),
 							'options'		=> array(
 							'top'	=> __('Top', 'bb-expandable-row'),
 							'bottom'	=> __('Bottom', 'bb-expandable-row'),
@@ -134,6 +148,31 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						'bber_row_icon_size'	=> array(
 							'type'          => 'text',
 		                    'label'         => __('Icon Size', 'bb-expandable-row'),
+		                    'maxlength'     => '',
+		                    'size'          => '',
+		                    'placeholder'   => '32',
+		                    'description'   => 'px',
+						),// position
+						'bber_row_image' => array(
+							'type'	=> 'photo',
+							'label'	=> __( 'Select Image','bb-expandable-row'),
+							'show_remove'	=> true,
+						),
+						'bber_image_position'=> array(
+							'type'	=> 'select',
+							'label' => __('Image Position', 'bb-expandable-row'),
+							'options'		=> array(
+							'top'	=> __('Top', 'bb-expandable-row'),
+							'bottom'	=> __('Bottom', 'bb-expandable-row'),
+							'left'	=> __('Left', 'bb-expandable-row'),
+							'right'	=> __('Right', 'bb-expandable-row')
+							),
+							'default'	=> 'left',
+						),
+						// size
+						'bber_row_image_size'	=> array(
+							'type'          => 'text',
+		                    'label'         => __('Image Size', 'bb-expandable-row'),
 		                    'maxlength'     => '',
 		                    'size'          => '',
 		                    'placeholder'   => '32',

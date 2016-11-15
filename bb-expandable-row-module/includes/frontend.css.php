@@ -48,9 +48,26 @@
 /* Title Row Background Color */
 .fl-node-<?php echo $id; ?> .bb-expandable-trigger-row {
 	background-color:#<?php echo ($settings->bber_row_background_color != '') ? $settings->bber_row_background_color : 'inherit' ?>;
+	border-radius: <?php echo ($settings->bber_border_radius != '') ? $settings->bber_border_radius : '4' ?>px;
 }
 
 /* Title Row Background Color */
 .fl-node-<?php echo $id; ?> .bber-clicked {
 	background-color:#<?php echo ($settings->bber_after_click_row_background_color != '') ? $settings->bber_after_click_row_background_color : 'inherit' ?>;
+}
+/* Border Radius After Expand */
+.fl-node-<?php echo $id; ?> .bb-expandable-trigger-row.bber-clicked {
+<?php $bradius=($settings->bber_border_radius != '') ? $settings->bber_border_radius : '4' ; ?>
+	-webkit-border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
+   -moz-border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
+    -ms-border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
+     -o-border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
+        border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
+}
+.fl-node-<?php echo $id; ?> .bb-expandable-toggle-row.bber-expanded {
+	-webkit-border-radius: 0px 0px <?php echo $bradius;?>px <?php echo $bradius;?>px;
+   -moz-border-radius: 0px 0px <?php echo $bradius;?>px <?php echo $bradius;?>px;
+    -ms-border-radius: 0px 0px <?php echo $bradius;?>px <?php echo $bradius;?>px;
+     -o-border-radius: 0px 0px <?php echo $bradius;?>px <?php echo $bradius;?>px;
+        border-radius: 0px 0px <?php echo $bradius;?>px <?php echo $bradius;?>px;
 }
