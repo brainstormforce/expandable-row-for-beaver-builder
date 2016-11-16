@@ -1,6 +1,12 @@
+/* title alignment */
 <?php if($settings->bber_title_alignment != 'default'): ?>
 .fl-node-<?php echo $id; ?> .content-align{
     text-align: <?php echo $settings->bber_title_alignment; ?>;
+}
+<?php endif ?>
+<?php if($settings->bber_ac_title_alignment != 'default'): ?>
+.fl-node-<?php echo $id; ?> .content-align.bber-clicked {
+    text-align: <?php echo $settings->bber_ac_title_alignment; ?>;
 }
 <?php endif ?>
 
@@ -10,6 +16,14 @@
 	padding-bottom:<?php echo ($settings->bber_title_padding_bottom != '') ? $settings->bber_title_padding_bottom : '20' ?>px;
 	padding-left:<?php echo ($settings->bber_title_padding_left != '') ? $settings->bber_title_padding_left : '20' ?>px;
 	padding-right:<?php echo ($settings->bber_title_padding_right != '') ? $settings->bber_title_padding_right : '20' ?>px;
+}
+
+/* after click title padding */
+.fl-node-<?php echo $id; ?> .bber-row-padding.bber-clicked {
+	padding-top:<?php echo ($settings->bber_ac_title_padding_top != '') ? $settings->bber_ac_title_padding_top : '20' ?>px;
+	padding-bottom:<?php echo ($settings->bber_ac_title_padding_bottom != '') ? $settings->bber_ac_title_padding_bottom : '20' ?>px;
+	padding-left:<?php echo ($settings->bber_ac_title_padding_left != '') ? $settings->bber_ac_title_padding_left : '20' ?>px;
+	padding-right:<?php echo ($settings->bber_ac_title_padding_right != '') ? $settings->bber_ac_title_padding_right : '20' ?>px;
 }
 
 /* content padding */
@@ -86,4 +100,19 @@
      -o-border-radius: 0px 0px <?php echo $bradius;?>px <?php echo $bradius;?>px;
         border-radius: 0px 0px <?php echo $bradius;?>px <?php echo $bradius;?>px;
 }
+
+/* Typography */
+.fl-node-<?php echo $id; ?> .bb-expandable-trigger-row {
+	font-family:"<?php echo $settings->bber_font['family']; ?>";
+	font-weight:<?php echo ($settings->bber_font['weight'] !='regular') ? $settings->bber_font['weight'] : '500';?>;
+    font-size: <?php echo ($settings->bber_font_size != '') ? $settings->bber_font_size : '18'; ?>px;
+    line-height: <?php echo ($settings->bber_line_height != '') ? $settings->bber_line_height : '22'; ?>px;	
+}
+
+/* Content Description */
+<?php if($settings->bber_desc_align != 'default'):?>
+.fl-node-<?php echo $id; ?> .bber-content-section {
+	text-align: <?php echo $settings->bber_desc_align; ?>;	
+}
+<?php endif?>
 

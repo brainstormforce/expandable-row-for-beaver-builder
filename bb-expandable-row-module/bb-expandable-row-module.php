@@ -10,6 +10,8 @@ class BSFBBExpandableRow extends FLBuilderModule {
 				'dir'           => BB_EXPAND_ROW_DIR . 'bb-expandable-row-module/',
 	            'url'           => BB_EXPAND_ROW_URL . 'bb-expandable-row-module/',
 			) );
+		
+		
 	}
 	public function render_icon($icon) {
 		return '<i id="bber-icon" class="bber-icon-size '.$icon.'"></i>';
@@ -17,7 +19,15 @@ class BSFBBExpandableRow extends FLBuilderModule {
 	public function render_image($settings) {
 		return '<img id="bber-img" src="'.$settings->bber_row_image_src.'" width="'.(($settings->bber_row_image_size!="") ? $settings->bber_row_image_size : "32" ).'"  />';
 	}
+	public function get_video_src($url) {
+		$vid_id='';
+		if( preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches) ){
+				$vid_id = $matches[1];
+			}
+		return '<iframe class="bber-video-frame" src="https://www.youtube.com/embed/'.$vid_id.'" frameborder="0" width="100%" height="100%" allowfullscreen></iframe>';
+	}
 }
+require_once 'includes/bb_er_helper.php';
 
 FLBuilder::register_module( 'BSFBBExpandableRow', array(
 		'general'		=> array(
@@ -53,7 +63,20 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 								'right'	=> __('Right','bb-expandable-row')
 								),
 							'default' => 'default',
-							'help'	=> 'Overall alignment of both titles',
+							'help'	=> __('Alignment of title before click','bb-expandable-row'),
+						),
+						// after click title alignment
+						'bber_ac_title_alignment'	=> array(
+							'type'	=> 'select',
+							'label'	=> __('After Click Title Alignment','bb-expandable-row'),
+							'options'	=> array(
+								'default' => __('Default','bb-expandable-row'),
+								'left'	=> __('Left','bb-expandable-row'),
+								'center'	=> __('Center','bb-expandable-row'),
+								'right'	=> __('Right','bb-expandable-row')
+								),
+							'default' => 'default',
+							'help'	=> __('Alignment of title after click','bb-expandable-row'),
 						),
 						// border radius
 						'bber_border_radius'	=> array(
@@ -95,22 +118,84 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 				'content'	=>	array(
 					'title' => __( 'Content', 'bb-expandable-row'),
 					'fields'	=> array(
+						// content type
 						'bber_content_type'	=> array(
 							'type'	=>	'select',
 							'label'         => __('Type', 'bb-expandable-row'),
 							'options'	=> array(
 								'content'	=> __('Content', 'bb-expandable-row'),
 								'photo'		=> __('Photo', 'bb-expandable-row'),
-								'youtube'	=> __('Youtube Video', 'bb-expandable-row'),
+								'iframe'	=> __('Youtube Video', 'bb-expandable-row'),
+								'saved_rows'        => array(
+                                	'label'         => __('Saved Rows', 'bb-expandable-row'),
+                                	'premium'       => true
+                            	),
+                            	'saved_modules'     => array(
+	                                'label'         => __('Saved Modules', 'bb-expandable-row'),
+	                                'premium'       => true
+	                            ),
 							),
 							'default'	=> 'content',
+							'toggle'	=> array(
+								'content'	=> array(
+									'fields'	=> array('bber_desc_align','bber_editor')
+								),
+								'photo'		=> array(
+									'fields'	=> array('bber_desc_align','bber_desc_photo')
+								),
+								'iframe'	=> array(
+									'fields'	=> array('bber_desc_align','bber_desc_video')
+								),
+								'saved_rows' => array(
+									'fields' => array('bber_saved_row')
+								),
+								'saved_modules' => array(
+									'fields' => array('bber_saved_module')
+								),
+							)
+						),
+						// content align
+						'bber_desc_align'	=> array(
+							'type'	=> 'select',
+							'label'	=> __('Content Alignment','bb-expandable-row'),
+							'options'	=> array(
+								'default'	=> __('Default','bb-expandable-row'),
+								'left'	=> __('Left','bb-expandable-row'),
+								'right'	=> __('Right','bb-expandable-row'),
+								'center'	=> __('Center','bb-expandable-row')
+							),
+							'default'	=> 'default',
+						),
+						// editor
+						'bber_editor' => array(
+						    'type'          => 'editor',
+						    'media_buttons' => true,
+						    'rows'          => 10
+						),
+						// photo
+						'bber_desc_photo'	=> array(
+							'type'	=> 'photo',
+							'label'	=> __( 'Select Photo', 'bb-expandable-row'),
+							'show_remove'	=> true,
+						),
+						// video
+						'bber_desc_video'	=> array(
+							'type'	=> 'text',
+							'label'	=> __( 'URL','bb-expandable-row'),
+							'description'	=> __( 'Copied URL of Video Paste Here','bb-expandable-row')
+						),
+						'bber_saved_row'	=> array(
+							'type'                  => 'select',
+                        	'label'                 => __('Select Row', 'bb-expandable-row'),
+                        	'options'               => BSFBBERhelper::get_saved_row_template(),
+						),
+						'bber_saved_module'	=> array(
+							'type'                  => 'select',
+                        	'label'                 => __('Select Modules', 'bb-expandable-row'),
+                        	'options'               => BSFBBERhelper::get_saved_module_template(),
 						),
 					)//fields
 				)// Content section
-			/*	'content'	=>	array(
-					'title' => __( 'Padding', 'bb-expandable-row'),
-					'fields'	=> array()//fields
-				)// Padding section 	*/ // may be required in future
 			)// section
 		),// general
 
@@ -311,17 +396,17 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							'type'	=> 'select',
 							'label'	=> __('Background Image Position','bb-expandable-row'),
 							'options'	=> array(
-								'left top'	=> __('Left Top','bb-expandable-row'),
-								'left center'	=> __('Left Center','bb-expandable-row'),
-								'left bottom'	=> __('Left Bottom','bb-expandable-row'),
-								'right top'	=> __('Right Top','bb-expandable-row'),
-								'right center'	=> __('Right Center','bb-expandable-row'),
-								'right bottom'	=> __('Right Bottom','bb-expandable-row'),
-								'center top'	=> __('Center Top','bb-expandable-row'),
-								'center center'	=> __('Center Center','bb-expandable-row'),
-								'center bottom'	=> __('Center Bottom','bb-expandable-row')
+								'0% 0%'	=> __('Left Top','bb-expandable-row'),
+								'0% 50%'	=> __('Left Center','bb-expandable-row'),
+								'0% 100%'	=> __('Left Bottom','bb-expandable-row'),
+								'100% 0%'	=> __('Right Top','bb-expandable-row'),
+								'100% 50%'	=> __('Right Center','bb-expandable-row'),
+								'100% 100%'	=> __('Right Bottom','bb-expandable-row'),
+								'50% 0%'	=> __('Center Top','bb-expandable-row'),
+								'50% 50%'	=> __('Center Center','bb-expandable-row'),
+								'50% 100%'	=> __('Center Bottom','bb-expandable-row')
 							),
-							'default'	=> 'center center'
+							'default'	=> '50% 50%'
 						),
 						'bber_row_bg_img_attachment'=> array(
 							'type'	=> 'select',
@@ -390,17 +475,17 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							'type'	=> 'select',
 							'label'	=> __('Background Image Position','bb-expandable-row'),
 							'options'	=> array(
-								'left top'	=> __('Left Top','bb-expandable-row'),
-								'left center'	=> __('Left Center','bb-expandable-row'),
-								'left bottom'	=> __('Left Bottom','bb-expandable-row'),
-								'right top'	=> __('Right Top','bb-expandable-row'),
-								'right center'	=> __('Right Center','bb-expandable-row'),
-								'right bottom'	=> __('Right Bottom','bb-expandable-row'),
-								'center top'	=> __('Center Top','bb-expandable-row'),
-								'center center'	=> __('Center Center','bb-expandable-row'),
-								'center bottom'	=> __('Center Bottom','bb-expandable-row')
+								'0% 0%'	=> __('Left Top','bb-expandable-row'),
+								'0% 50%'	=> __('Left Center','bb-expandable-row'),
+								'0% 100%'	=> __('Left Bottom','bb-expandable-row'),
+								'100% 0%'	=> __('Right Top','bb-expandable-row'),
+								'100% 50%'	=> __('Right Center','bb-expandable-row'),
+								'100% 100%'	=> __('Right Bottom','bb-expandable-row'),
+								'50% 0%'	=> __('Center Top','bb-expandable-row'),
+								'50% 50%'	=> __('Center Center','bb-expandable-row'),
+								'50% 100%'	=> __('Center Bottom','bb-expandable-row')
 							),
-							'default'	=> 'center center'
+							'default'	=> '50% 50%'
 						),
 						'bber_row_ac_bg_img_attachment'=> array(
 							'type'	=> 'select',
@@ -427,14 +512,51 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 
 		'typography'	=> array(
 			'title'     => __('Typography', 'bb-expandable-row'),
-			'sections'  => array()//section
+			'sections'  => array(
+				'title_tyopgraphy'	=> array(
+					'title'	=> __('Typography', 'bb-expandable-row'),
+					'fields'	=> array(
+						// font typography
+						'bber_font'	=> array(
+							'type'	=> 'font',
+							'label'	=>	__('Typography','bb-expandable-row'),
+							'default'       => array(
+                            	'family'        => 'Defaults',
+                            	'weight'        => 'Defaults'
+							),
+							'preview'       => array(
+                            	'type'          => 'font',
+                            	'selector'      => '.bb-expandable-trigger-row'  
+                        	)
+						),
+						// Font Size
+                        'bber_font_size'     => array(
+	                        'type'          => 'text',
+	                        'label'         => __('Font Size', 'bb-expandable-row'),
+	                        'placeholder'   => '18',
+	                        'maxlength'     => '3',
+	                        'size'          => '5',
+                        	'description'   => 'px',
+                    	),
+                    	// Line Height
+                    	'bber_line_height'     => array(
+	                        'type'          => 'text',
+	                        'label'         => __('Line Height', 'bb-expandable-row'),
+	                        'placeholder'   => '22',
+	                        'maxlength'     => '3',
+	                        'size'          => '5',
+	                        'description'   => 'px',
+                    	),
+					)//fields
+				)//title typography
+			)//section
 		),// typography
 
 		'padding'		=> array(
 			'title'     => __('Padding', 'bb-expandable-row'),
 			'sections'  => array(
 				'title_padding'  => array(
-					'title'		=> __('Title Padding', 'bb-expandable-row'),
+					'title'		=> __('Row Padding', 'bb-expandable-row'),
 					'fields'	=> array(
 						// padding top
 						'bber_title_padding_top'     => array(
@@ -465,6 +587,47 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
                     	),
                     	// padding right
 						'bber_title_padding_right'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Right', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+					)// fields
+				),// title padding section
+				'after_click_title_padding'  => array(
+					'title'		=> __('After Click Row Padding', 'bb-expandable-row'),
+					'fields'	=> array(
+						// padding top
+						'bber_ac_title_padding_top'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Top', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding bottom
+						'bber_ac_title_padding_bottom'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Bottom', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding left
+						'bber_ac_title_padding_left'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Left', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding right
+						'bber_ac_title_padding_right'     => array(
                         'type'          => 'text',
                         'label'         => __('Right', 'bb-expandable-row'),
                         'maxlength'     => '3',

@@ -17,7 +17,7 @@ if( !class_exists('BSFBBExpandRowCHK') )
 	class BSFBBExpandRowCHK {
 
 			function __construct() {
-				add_action('init', array( $this, 'load_expandable_row' ) );
+				add_action('init', array( $this, 'load_expandable_row' ), 99 );
 				add_action('init', array( $this, 'load_textdomain'));
 			}
 
