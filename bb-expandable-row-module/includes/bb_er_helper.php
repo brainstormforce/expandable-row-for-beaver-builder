@@ -4,6 +4,25 @@ if( !class_exists( 'BSFBBERhelper' ) ) {
 
 	class BSFBBERhelper {
 
+	static public function get_saved_page_template() {
+			if ( FLBuilderModel::node_templates_enabled() ) {
+				
+				$page_templates = BSFBBERhelper::get_post_template( 'layout' );
+				$node_template  = FLBuilderModel::is_post_node_template();
+				
+				$options = array();
+				
+				if ( count($page_templates) ) {
+					foreach ($page_templates as $page_template) {
+                		$options[$page_template['id']] = $page_template['name'];
+					}
+				}else{
+					$options['no_template'] = "It seems that, you have not saved any template yet.";
+				}
+        		return $options;
+			}
+		}
+
 	static public function get_saved_row_template() {
 		if ( FLBuilderModel::node_templates_enabled() ) {
 			$saved_rows = BSFBBERhelper::get_post_template('row');

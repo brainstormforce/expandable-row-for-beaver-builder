@@ -85,6 +85,13 @@
 				</div>
 			<?php endif ?>
 
+			<?php if($settings->bber_content_type == 'saved_page_templates'): ?>
+			<!-- saved templets -->
+				<div class="bber-saved-template">
+					<?php echo do_shortcode('[fl_builder_insert_layout id="'.$settings->bber_saved_page.'"]'); ?>
+				</div>
+			<?php endif ?>
+
 		</div>
 	</div>
 	<!-- Content Row End Here -->

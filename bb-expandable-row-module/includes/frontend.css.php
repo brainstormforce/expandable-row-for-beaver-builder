@@ -86,6 +86,7 @@
 }
 /* Border Radius After Expand */
 .fl-node-<?php echo $id; ?> .bb-expandable-trigger-row.bber-clicked {
+color:#<?php echo ($settings->bber_typo_ac_title_color != '') ? $settings->bber_typo_ac_title_color : '000' ?>;
 <?php $bradius=($settings->bber_border_radius != '') ? $settings->bber_border_radius : '4' ; ?>
 	-webkit-border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
    -moz-border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
@@ -107,6 +108,7 @@
 	font-weight:<?php echo ($settings->bber_font['weight'] !='regular') ? $settings->bber_font['weight'] : '500';?>;
     font-size: <?php echo ($settings->bber_font_size != '') ? $settings->bber_font_size : '18'; ?>px;
     line-height: <?php echo ($settings->bber_line_height != '') ? $settings->bber_line_height : '22'; ?>px;	
+    color:#<?php echo ($settings->bber_typo_title_color != '') ? $settings->bber_typo_title_color : '000' ?>;
 }
 
 /* Content Description */
@@ -116,3 +118,8 @@
 }
 <?php endif?>
 
+<?php if($settings->bber_content_type == 'content'):?>
+.fl-node-<?php echo $id; ?> .bber-description {
+	color: <?php echo ($settings->bber_typo_content_color != '') ? '#'.$settings->bber_typo_content_color : 'inherit' ?>;
+}
+<?php endif?>

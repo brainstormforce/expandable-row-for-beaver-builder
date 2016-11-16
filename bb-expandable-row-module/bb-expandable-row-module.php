@@ -134,11 +134,15 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 	                                'label'         => __('Saved Modules', 'bb-expandable-row'),
 	                                'premium'       => true
 	                            ),
+	                            'saved_page_templates'      => array(
+                                	'label'         => __('Saved Page Templates', 'bb-expandable-row'),
+                                	'premium'       => true
+                            	),
 							),
 							'default'	=> 'content',
 							'toggle'	=> array(
 								'content'	=> array(
-									'fields'	=> array('bber_desc_align','bber_editor')
+									'fields'	=> array('bber_desc_align','bber_editor','bber_typo_content_color')
 								),
 								'photo'		=> array(
 									'fields'	=> array('bber_desc_align','bber_desc_photo')
@@ -151,6 +155,9 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 								),
 								'saved_modules' => array(
 									'fields' => array('bber_saved_module')
+								),
+								'saved_page_templates' => array(
+									'fields' => array('bber_saved_page')
 								),
 							)
 						),
@@ -193,6 +200,11 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							'type'                  => 'select',
                         	'label'                 => __('Select Modules', 'bb-expandable-row'),
                         	'options'               => BSFBBERhelper::get_saved_module_template(),
+						),
+						'bber_saved_page'	=> array(
+							'type'                  => 'select',
+                        	'label'                 => __('Select Templates', 'bb-expandable-row'),
+                        	'options'               => BSFBBERhelper::get_saved_page_template(),
 						),
 					)//fields
 				)// Content section
@@ -547,6 +559,26 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 	                        'size'          => '5',
 	                        'description'   => 'px',
                     	),
+                    	// title color
+						'bber_typo_title_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Title Color', 'bb-expandable-row'),
+							'default'	=> '000',
+							'show_reset'=> true,
+						),
+						// after click title color
+						'bber_typo_ac_title_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('After Click Title Color', 'bb-expandable-row'),
+							'default'	=> '000',
+							'show_reset'=> true,
+						),
+						// content color
+						'bber_typo_content_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Description Content Color', 'bb-expandable-row'),
+							'show_reset'=> true,
+						),
 					)//fields
 				)//title typography
 			)//section
