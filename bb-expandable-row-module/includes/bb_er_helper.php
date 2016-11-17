@@ -84,6 +84,30 @@ if( !class_exists( 'BSFBBERhelper' ) ) {
 		}
 		return $templates;
 	}
+
+	static public function toRBGA( $hex, $opacity )
+		{
+			if($opacity){
+	        	if(abs($opacity) > 1) {
+	        		$opacity = $opacity / 100;
+	        	}
+	        }
+		    $rgba = $hex;
+		    if( $opacity != '' ) {
+		        if(strlen( $hex ) == 3) {
+		            $r = hexdec(substr($hex,0,1).substr($hex,0,1));
+		            $g = hexdec(substr($hex,1,1).substr($hex,1,1));
+		            $b = hexdec(substr($hex,2,1).substr($hex,2,1));
+		        } else {
+		            $r = hexdec(substr($hex,0,2));
+		            $g = hexdec(substr($hex,2,2));
+		            $b = hexdec(substr($hex,4,2));
+		        }
+		        return 'rgba( ' . $r . ', ' . $g . ', ' . $b . ', ' . $opacity . ' )';
+		    } else {
+		        return '#' . $hex;
+		    }
+		}
 }
  new BSFBBERhelper();
 }

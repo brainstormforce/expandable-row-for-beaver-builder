@@ -13,18 +13,56 @@ class BSFBBExpandableRow extends FLBuilderModule {
 		
 		
 	}
+	public function render_image_icon($settings) {
+ 		switch ($settings->bber_image_type) {
+ 			case 'icon':
+ 				echo BSFBBExpandableRow::render_icon($settings->bber_row_icon);
+ 				break;
+ 			case 'image':
+ 				echo BSFBBExpandableRow::render_image($settings);
+ 				break;
+ 		}
+ 	}
+
 	public function render_icon($icon) {
 		return '<i id="bber-icon" class="bber-icon-size '.$icon.'"></i>';
 	}
 	public function render_image($settings) {
 		return '<img id="bber-img" src="'.$settings->bber_row_image_src.'" width="'.(($settings->bber_row_image_size!="") ? $settings->bber_row_image_size : "32" ).'"  />';
 	}
+
+	// to seperate video id from link
 	public function get_video_src($url) {
 		$vid_id='';
 		if( preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches) ){
 				$vid_id = $matches[1];
 			}
-		return '<iframe class="bber-video-frame" src="https://www.youtube.com/embed/'.$vid_id.'" frameborder="0" width="100%" height="100%" allowfullscreen></iframe>';
+		return '<iframe class="bber-video-frame" src="https://www.youtube.com/embed/'.$vid_id.'" frameborder="0" allowfullscreen></iframe>';
+	}
+
+	// to get expandable content
+	public function get_content($settings) {
+		switch ($settings->bber_content_type) {
+				case 'content':
+					 echo $settings->bber_editor;
+					break;
+				case 'photo':
+					if( isset($settings->bber_desc_photo_src) )
+					 echo '<img src='.$settings->bber_desc_photo_src.'>';
+					break;
+				case 'iframe':
+					 echo BSFBBExpandableRow::get_video_src($settings->bber_desc_video);
+					break;
+				case 'saved_rows':
+					 echo do_shortcode('[fl_builder_insert_layout id="'.$settings->bber_saved_row.'"]');
+					break;
+				case 'saved_modules':
+					 echo do_shortcode('[fl_builder_insert_layout id="'.$settings->bber_saved_module.'"]');
+					break;
+				case 'saved_page_templates':
+					 echo do_shortcode('[fl_builder_insert_layout id="'.$settings->bber_saved_page.'"]');
+					break;
+		}
 	}
 }
 require_once 'includes/bb_er_helper.php';
@@ -159,7 +197,8 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 								'saved_page_templates' => array(
 									'fields' => array('bber_saved_page')
 								),
-							)
+							),
+							'help'	=> __('Kind of content want to show after expand.','bb-expandable-row')
 						),
 						// content align
 						'bber_desc_align'	=> array(
@@ -189,7 +228,8 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						'bber_desc_video'	=> array(
 							'type'	=> 'text',
 							'label'	=> __( 'URL','bb-expandable-row'),
-							'description'	=> __( 'Copied URL of Video Paste Here','bb-expandable-row')
+							'description'	=> __( 'Copied URL of Video Paste Here','bb-expandable-row'),
+							'help' => __('URL which works iframe structure.','bb-expandable-row')
 						),
 						'bber_saved_row'	=> array(
 							'type'                  => 'select',
@@ -374,7 +414,7 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							'default'	=> 'color',
 							'toggle'	=> array(
 								'color'	=> array(
-									'fields'	=> array('bber_row_background_color')
+									'fields'	=> array('bber_row_background_color','bber_background_opacity')
 								),
 								'image'	=> array(
 									'fields'	=> array('bber_row_background_image','bber_row_bg_img_repeat','bber_row_bg_img_position','bber_row_bg_img_attachment')
@@ -387,7 +427,17 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							'label'		=> __('Background Color', 'bb-expandable-row'),
 							'default'	=> 'c1c1c1',
 							'show_reset'=> true,
+							'description'	=> __('<br/><br/><br/>Default color is c1c1c1 if not set.','bb-expandable-row')
 						),
+						// opacity
+						'bber_background_opacity'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Opacity', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '',
+                        'description'   => '%',
+                    	),
 						'bber_row_background_image' => array(
 							'type'	=> 'photo',
 							'label'	=> __( 'Select Image','bb-expandable-row'),
@@ -429,15 +479,7 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							),
 							'default'	=> 'scroll'
 						),
-						// opacity
-						/*'bber_background_opacity'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Opacity', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '',
-                        'description'   => '%',
-                    	)*/
+						
 					)//fields
 				),//row background section
 				'after-click-row-background' => array(
@@ -453,7 +495,7 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							'default'	=> 'color',
 							'toggle'	=> array(
 								'color'	=> array(
-									'fields'	=> array('bber_after_click_row_background_color')
+									'fields'	=> array('bber_after_click_row_background_color','bber_after_click_background_opacity')
 								),
 								'image'	=> array(
 									'fields'	=> array('bber_row_ac_background_image','bber_row_ac_bg_img_repeat','bber_row_ac_bg_img_position','bber_row_ac_bg_img_attachment')
@@ -466,7 +508,17 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							'label'		=> __('Background Color', 'bb-expandable-row'),
 							'default'	=> 'c1c1c1',
 							'show_reset'=> true,
+							'description'	=> __('<br/><br/><br/>Default color is c1c1c1 if not set.','bb-expandable-row')
 						),
+						// opacity
+						'bber_after_click_background_opacity'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Opacity', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '',
+                        'description'   => '%',
+                    	),
 						'bber_row_ac_background_image' => array(
 							'type'	=> 'photo',
 							'label'	=> __( 'Select Image','bb-expandable-row'),
@@ -508,15 +560,7 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							),
 							'default'	=> 'scroll'
 						),
-						// opacity
-						/*'bber_after_click_background_opacity'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Opacity', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '',
-                        'description'   => '%',
-                    	)*/
+						
 					)//fields
 				)// after click row background section
 			)//section

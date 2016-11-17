@@ -41,29 +41,29 @@
 
 /* Row Icon Color */
 .fl-node-<?php echo $id; ?> .content-align #bber-icon {
-	color:#<?php echo ($settings->bber_row_icon_color != '') ? $settings->bber_row_icon_color : 'inherit' ?>;
+	color:<?php echo ($settings->bber_row_icon_color != '') ? '#'.$settings->bber_row_icon_color : 'inherit' ?>;
 }
 
 /* Row Icon Hover Color */
 .fl-node-<?php echo $id; ?> .content-align:hover #bber-icon {
-	color:#<?php echo ($settings->bber_row_icon_hover_color != '') ? $settings->bber_row_icon_hover_color : 'inherit' ?>;
+	color:<?php echo ($settings->bber_row_icon_hover_color != '') ? '#'.$settings->bber_row_icon_hover_color : 'inherit' ?>;
 }
 
 /* After Click Row Icon Color */
 .fl-node-<?php echo $id; ?> .bber-clicked #bber-icon {
-	color:#<?php echo ($settings->bber_after_click_row_icon_color != '') ? $settings->bber_after_click_row_icon_color : 'inherit' ?>;
+	color:<?php echo ($settings->bber_after_click_row_icon_color != '') ? '#'.$settings->bber_after_click_row_icon_color : 'inherit' ?>;
 }
 
 /* After Click Row Icon Hover Color */
 .fl-node-<?php echo $id; ?> .bber-clicked:hover #bber-icon {
-	color:#<?php echo ($settings->bber_after_click_row_icon_hover_color != '') ? $settings->bber_after_click_row_icon_hover_color : 'inherit' ?>;
+	color:<?php echo ($settings->bber_after_click_row_icon_hover_color != '') ? '#'.$settings->bber_after_click_row_icon_hover_color : 'inherit' ?>;
 }
 
 /* Title Row Background Color */
 .fl-node-<?php echo $id; ?> .bb-expandable-trigger-row {
 
 	<?php if($settings->bber_row_bg_type == 'color'):?>
-		background-color:#<?php echo ($settings->bber_row_background_color != '') ? $settings->bber_row_background_color : 'c1c1c1' ?>;
+		background-color: <?php echo BSFBBERhelper::toRBGA( $settings->bber_row_background_color, $settings->bber_background_opacity ); ?>;
 	<?php elseif($settings->bber_row_bg_type == 'image'): ?>
 		background-image: url("<?php echo $settings->bber_row_background_image_src; ?>");
     	background-repeat: <?php echo $settings->bber_row_bg_img_repeat;?>;
@@ -76,7 +76,9 @@
 
 /* Title Row Background Color */
 .fl-node-<?php echo $id; ?> .bber-clicked {
-	background-color:#<?php echo ($settings->bber_after_click_row_background_color != '') ? $settings->bber_after_click_row_background_color : 'inherit' ?>;
+	<?php if($settings->bber_row_ac_bg_type == 'color'):?>
+		background-color: <?php echo BSFBBERhelper::toRBGA( $settings->bber_after_click_row_background_color, $settings->bber_after_click_background_opacity ); ?>;
+	<?php endif ?>
 	<?php if( $settings->bber_shadow_effect == 'yes'): ?>
 		position: relative;
 		-webkit-box-shadow: 0 8px 10px -8px black;
@@ -86,7 +88,7 @@
 }
 /* Border Radius After Expand */
 .fl-node-<?php echo $id; ?> .bb-expandable-trigger-row.bber-clicked {
-color:#<?php echo ($settings->bber_typo_ac_title_color != '') ? $settings->bber_typo_ac_title_color : '000' ?>;
+color:<?php echo ($settings->bber_typo_ac_title_color != '') ? '#'.$settings->bber_typo_ac_title_color : 'inherit' ?>;
 <?php $bradius=($settings->bber_border_radius != '') ? $settings->bber_border_radius : '4' ; ?>
 	-webkit-border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
    -moz-border-radius: <?php echo $bradius;?>px <?php echo $bradius;?>px 0px 0px;
@@ -119,7 +121,7 @@ color:#<?php echo ($settings->bber_typo_ac_title_color != '') ? $settings->bber_
 <?php endif?>
 
 <?php if($settings->bber_content_type == 'content'):?>
-.fl-node-<?php echo $id; ?> .bber-description {
+.fl-node-<?php echo $id; ?> .bber-content {
 	color: <?php echo ($settings->bber_typo_content_color != '') ? '#'.$settings->bber_typo_content_color : 'inherit' ?>;
 }
 <?php endif?>
