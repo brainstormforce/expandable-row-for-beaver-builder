@@ -125,3 +125,14 @@ color:<?php echo ($settings->bber_typo_ac_title_color != '') ? '#'.$settings->bb
 	color: <?php echo ($settings->bber_typo_content_color != '') ? '#'.$settings->bber_typo_content_color : 'inherit' ?>;
 }
 <?php endif?>
+
+.fl-node-<?php echo $id; ?> .bb-expandable-toggle-row {
+	<?php if($settings->bber_content_row_type == 'color'): ?>
+		background-color: <?php echo BSFBBERhelper::toRBGA( $settings->bber_content_row_color, $settings->bber_content_row_opacity ); ?>;
+	<?php elseif($settings->bber_content_row_type == 'image'): ?>
+		background-image: url("<?php echo $settings->bber_content_row_photo_src; ?>");
+    	background-repeat: <?php echo $settings->bber_content_row_img_repeat;?>;
+    	background-position: <?php echo $settings->bber_content_row_img_position ;?>;
+    	background-attachment: <?php echo $settings->bber_content_row_img_attachment ;?>;
+	<?php endif ?>
+}

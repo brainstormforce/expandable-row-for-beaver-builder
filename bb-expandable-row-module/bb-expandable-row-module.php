@@ -562,7 +562,90 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						),
 						
 					)//fields
-				)// after click row background section
+				),// after click row background section
+
+				'content-row-background' => array(
+					'title'	=> __('Content Row Background', 'bb-expandable-row'),
+					'fields'  => array(
+
+						'bber_content_row_type' => array(
+							'type'	=> 'select',
+							'label'	=> __('Background Type'),
+							'options'	=> array(
+								'color'	=> __('Color', 'bb-expandable-row'),
+								'image'	=> __('Image', 'bb-expandable-row')
+							),
+							'default'	=> 'color',
+							'toggle'	=> array(
+								'color'	=> array(
+									'fields'	=> array('bber_content_row_color','bber_content_row_opacity')
+								),
+								'image'	=> array(
+									'fields'	=> array('bber_content_row_photo','bber_content_row_img_repeat','bber_content_row_img_position','bber_content_row_img_attachment')
+								)
+							),
+						),
+						// background color
+						'bber_content_row_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Background Color', 'bb-expandable-row'),
+							'default'	=> 'f7f7f7',
+							'show_reset'=> true,
+							'description'	=> __('<br/><br/><br/>Default color is f7f7f7 if not set.','bb-expandable-row')
+						),
+						// opacity
+						'bber_content_row_opacity'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Opacity', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '',
+                        'description'   => '%',
+                    	),
+						'bber_content_row_photo' => array(
+							'type'	=> 'photo',
+							'label'	=> __( 'Select Image','bb-expandable-row'),
+							'show_remove'	=> true,
+						),
+						'bber_content_row_img_repeat'	=> array(
+							'type'	=> 'select',
+							'label'	=> __('Background Image Repeat','bb-expandable-row'),
+							'options'	=> array(
+								'no-repeat'	=> __('No Repeat','bb-expandable-row'),
+								'repeat'	=> __('Repeat','bb-expandable-row'),
+								'repeat-x'	=> __('Repeat-Y','bb-expandable-row'),
+								'repeat-y'	=> __('Repeat-X','bb-expandable-row')
+							),
+							'default'	=> 'no-repeat'
+						),
+						'bber_content_row_img_position'	=> array(
+							'type'	=> 'select',
+							'label'	=> __('Background Image Position','bb-expandable-row'),
+							'options'	=> array(
+								'0% 0%'	=> __('Left Top','bb-expandable-row'),
+								'0% 50%'	=> __('Left Center','bb-expandable-row'),
+								'0% 100%'	=> __('Left Bottom','bb-expandable-row'),
+								'100% 0%'	=> __('Right Top','bb-expandable-row'),
+								'100% 50%'	=> __('Right Center','bb-expandable-row'),
+								'100% 100%'	=> __('Right Bottom','bb-expandable-row'),
+								'50% 0%'	=> __('Center Top','bb-expandable-row'),
+								'50% 50%'	=> __('Center Center','bb-expandable-row'),
+								'50% 100%'	=> __('Center Bottom','bb-expandable-row')
+							),
+							'default'	=> '50% 50%'
+						),
+						'bber_content_row_img_attachment'=> array(
+							'type'	=> 'select',
+							'label'	=> __('Background Attachment','bb-expandable-row'),
+							'options'	=> array(
+								'fixed'	=> __('Fixed','bb-expandable-row'),
+								'scroll'	=> __('Scroll','bb-expandable-row')
+							),
+							'default'	=> 'scroll'
+						),
+						
+					)//fields
+				)// content row background section
 			)//section
 		),// background
 
