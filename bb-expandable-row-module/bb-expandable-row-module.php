@@ -1,5 +1,4 @@
 <?php
-
 class BSFBBExpandableRow extends FLBuilderModule {
 	public function __construct() 
 	{
@@ -10,8 +9,6 @@ class BSFBBExpandableRow extends FLBuilderModule {
 				'dir'           => BB_EXPAND_ROW_DIR . 'bb-expandable-row-module/',
 	            'url'           => BB_EXPAND_ROW_URL . 'bb-expandable-row-module/',
 			) );
-		
-		
 	}
 	public function render_image_icon($settings) {
  		switch ($settings->bber_image_type) {
@@ -68,32 +65,16 @@ class BSFBBExpandableRow extends FLBuilderModule {
 require_once 'includes/bb_er_helper.php';
 
 FLBuilder::register_module( 'BSFBBExpandableRow', array(
-		'general'		=> array(
-			'title'     => __('General', 'bb-expandable-row'),
-			'sections'  =>  array(
-				'titles'	=>	array(
-					'title' 	=> __( 'Titles', 'bb-expandable-row'),
+		'general'	=> array(
+			'title'	=> __( 'General' ,'bb-expandable-row'),
+			'sections' => array(
+				'bber_general'	=> array(
+					'title'	=> __('General','bb-expandable-row'),
 					'fields'	=> array(
-						// row title
-						'bber_row_title'	=> array(
-							'type'	=> 'text',
-							'label'         => __('Row Title', 'bb-expandable-row'),
-							'maxlength'     => '',
-                    		'size'          => '',
-                    		'placeholder'   => '',
-						),
-						// after click row title
-						'bber_after_click_row_title'	=> array(
-							'type'	=> 'text',
-							'label'         => __('After Click Row Title', 'bb-expandable-row'),
-							'maxlength'     => '',
-                    		'size'          => '',
-                    		'placeholder'   => '',
-						),
 						// title alignment
 						'bber_title_alignment'	=> array(
 							'type'	=> 'select',
-							'label'	=> __('Title Alignment','bb-expandable-row'),
+							'label'	=> __('Before/After Click Title Alignment','bb-expandable-row'),
 							'options'	=> array(
 								'default' => __('Default','bb-expandable-row'),
 								'left'	=> __('Left','bb-expandable-row'),
@@ -101,165 +82,43 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 								'right'	=> __('Right','bb-expandable-row')
 								),
 							'default' => 'default',
-							'help'	=> __('Alignment of title before click','bb-expandable-row'),
-						),
-						// after click title alignment
-						'bber_ac_title_alignment'	=> array(
-							'type'	=> 'select',
-							'label'	=> __('After Click Title Alignment','bb-expandable-row'),
-							'options'	=> array(
-								'default' => __('Default','bb-expandable-row'),
-								'left'	=> __('Left','bb-expandable-row'),
-								'center'	=> __('Center','bb-expandable-row'),
-								'right'	=> __('Right','bb-expandable-row')
-								),
-							'default' => 'default',
-							'help'	=> __('Alignment of title after click','bb-expandable-row'),
+							'help'	=> __('Alignment of titles before and after click','bb-expandable-row'),
 						),
 						// border radius
 						'bber_border_radius'	=> array(
 							'type'	=> 'text',
-							'label'         => __('Border Radius', 'bb-expandable-row'),
+							'label'         => __('Row Border Radius', 'bb-expandable-row'),
 							'maxlength'     => '3',
                     		'size'          => '3',
                     		'placeholder'   => '4',
                     		'description'	=> __('px','bb-expandable-row')
 						),
-						'bber_shadow_effect'	=> array(
+						'bber_row_bg_type' => array(
 							'type'	=> 'select',
-							'label'	=> __( 'Shadow Effect', 'bb-expandable-row'),
+							'label'	=> __('Before/After Click Background Type'),
 							'options'	=> array(
-								'no'	=> __('No','bb-expandable-row'),
-								'yes'	=> __('Yes','bb-expandable-row'),
+								'color'	=> __('Color', 'bb-expandable-row'),
+								'image'	=> __('Image', 'bb-expandable-row')
 							),
-							'default'	=> 'no',
-							'help'	=> 'You will observ this effect at bottom of row after click.',
-						)
-					)//fields
-				),// Title section
-				'effect'	=>	array(
-					'title' => __( 'Effect', 'bb-expandable-row'),
-					'fields'	=> array(
-						// effect
-						'bber_row_effect'	=> array(
-							'type'	=>	'select',
-							'label'         => __('Effect', 'bb-expandable-row'),
-							'options'		=> array(
-							'slide'	=> __('Slide', 'bb-expandable-row'),
-							'fade'	=> __('Fade', 'bb-expandable-row'),
-							),
-							'default'	=> 'slide',
-							'help'	=> __('Appearing Effect of the Row', 'bb-expandable-row'),
-						),
-					)//fields
-				),// Effect section
-				'content'	=>	array(
-					'title' => __( 'Content', 'bb-expandable-row'),
-					'fields'	=> array(
-						// content type
-						'bber_content_type'	=> array(
-							'type'	=>	'select',
-							'label'         => __('Type', 'bb-expandable-row'),
-							'options'	=> array(
-								'content'	=> __('Content', 'bb-expandable-row'),
-								'photo'		=> __('Photo', 'bb-expandable-row'),
-								'iframe'	=> __('Youtube Video', 'bb-expandable-row'),
-								'saved_rows'        => array(
-                                	'label'         => __('Saved Rows', 'bb-expandable-row'),
-                                	'premium'       => true
-                            	),
-                            	'saved_modules'     => array(
-	                                'label'         => __('Saved Modules', 'bb-expandable-row'),
-	                                'premium'       => true
-	                            ),
-	                            'saved_page_templates'      => array(
-                                	'label'         => __('Saved Page Templates', 'bb-expandable-row'),
-                                	'premium'       => true
-                            	),
-							),
-							'default'	=> 'content',
+							'default'	=> 'color',
 							'toggle'	=> array(
-								'content'	=> array(
-									'fields'	=> array('bber_desc_align','bber_editor','bber_typo_content_color')
+								'color'	=> array(
+									'fields'	=> array('bber_row_background_color','bber_background_opacity','bber_after_click_row_background_color','bber_after_click_background_opacity','bber_row_background_hover_color','bber_background_hover_opacity','bber_ac_row_background_hover_color','bber_ac_background_hover_opacity')
 								),
-								'photo'		=> array(
-									'fields'	=> array('bber_desc_align','bber_desc_photo')
-								),
-								'iframe'	=> array(
-									'fields'	=> array('bber_desc_align','bber_desc_video')
-								),
-								'saved_rows' => array(
-									'fields' => array('bber_saved_row')
-								),
-								'saved_modules' => array(
-									'fields' => array('bber_saved_module')
-								),
-								'saved_page_templates' => array(
-									'fields' => array('bber_saved_page')
-								),
+								'image'	=> array(
+									'fields'	=> array('bber_row_background_image','bber_row_bg_img_repeat','bber_row_bg_img_position','bber_row_bg_img_attachment','bber_row_ac_background_image','bber_row_ac_bg_img_repeat','bber_row_ac_bg_img_position','bber_row_ac_bg_img_attachment')
+								)
 							),
-							'help'	=> __('Kind of content want to show after expand.','bb-expandable-row')
 						),
-						// content align
-						'bber_desc_align'	=> array(
-							'type'	=> 'select',
-							'label'	=> __('Content Alignment','bb-expandable-row'),
-							'options'	=> array(
-								'default'	=> __('Default','bb-expandable-row'),
-								'left'	=> __('Left','bb-expandable-row'),
-								'right'	=> __('Right','bb-expandable-row'),
-								'center'	=> __('Center','bb-expandable-row')
-							),
-							'default'	=> 'default',
-						),
-						// editor
-						'bber_editor' => array(
-						    'type'          => 'editor',
-						    'media_buttons' => true,
-						    'rows'          => 10
-						),
-						// photo
-						'bber_desc_photo'	=> array(
-							'type'	=> 'photo',
-							'label'	=> __( 'Select Photo', 'bb-expandable-row'),
-							'show_remove'	=> true,
-						),
-						// video
-						'bber_desc_video'	=> array(
-							'type'	=> 'text',
-							'label'	=> __( 'URL','bb-expandable-row'),
-							'description'	=> __( 'Copied URL of Video Paste Here','bb-expandable-row'),
-							'help' => __('URL which works iframe structure.','bb-expandable-row')
-						),
-						'bber_saved_row'	=> array(
-							'type'                  => 'select',
-                        	'label'                 => __('Select Row', 'bb-expandable-row'),
-                        	'options'               => BSFBBERhelper::get_saved_row_template(),
-						),
-						'bber_saved_module'	=> array(
-							'type'                  => 'select',
-                        	'label'                 => __('Select Modules', 'bb-expandable-row'),
-                        	'options'               => BSFBBERhelper::get_saved_module_template(),
-						),
-						'bber_saved_page'	=> array(
-							'type'                  => 'select',
-                        	'label'                 => __('Select Templates', 'bb-expandable-row'),
-                        	'options'               => BSFBBERhelper::get_saved_page_template(),
-						),
-					)//fields
-				)// Content section
-			)// section
-		),// general
-
-		'icon-image'	=> array(
-			'title'     => __('Icon/Image', 'bb-expandable-row'),
-			'sections'  => array(
+					)// fields
+				),
 				'image-icon'	=>	array(
 					'title'	 => __('Icon/Image', 'bb-expandable-row'),
 					'fields' => array(
+						//
 						'bber_image_type'	=> array(
 						'type'          => 'select',
-						'label'         => __('Image Type', 'bb-expandable-row'),
+						'label'         => __('Before/After Click Image Type', 'bb-expandable-row'),
 						'options'		=> array(
 							'none'	=> __('None', 'bb-expandable-row'),
 							'icon'	=> __('Icon', 'bb-expandable-row'),
@@ -320,62 +179,114 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						)
 					)// fields
 				),//image icon section
-
+				'effect'	=>	array(
+					'title' => __( 'Effect', 'bb-expandable-row'),
+					'fields'	=> array(
+						// effect
+						'bber_row_effect'	=> array(
+							'type'	=>	'select',
+							'label'         => __('Expandable Row Appear Effect', 'bb-expandable-row'),
+							'options'		=> array(
+							'slide'	=> __('Slide', 'bb-expandable-row'),
+							'fade'	=> __('Fade', 'bb-expandable-row'),
+							),
+							'default'	=> 'slide',
+							'help'	=> __('You will observe this while expanding the contents', 'bb-expandable-row'),
+						),
+					)//fields
+				),// Effect section
+				'title_tyopgraphy'	=> array(
+					'title'	=> __('Typography', 'bb-expandable-row'),
+					'fields'	=> array(
+						// font typography
+						'bber_font'	=> array(
+							'type'	=> 'font',
+							'label'	=>	__('Before/After Row Typography','bb-expandable-row'),
+							'default'       => array(
+                            	'family'        => 'Defaults',
+                            	'weight'        => 'Defaults'
+							),
+							'preview'       => array(
+                            	'type'          => 'font',
+                            	'selector'      => '.bb-expandable-trigger-row'  
+                        	)
+						),
+						// Font Size
+                        'bber_font_size'     => array(
+	                        'type'          => 'text',
+	                        'label'         => __('Before/After Row Font Size', 'bb-expandable-row'),
+	                        'placeholder'   => '18',
+	                        'maxlength'     => '3',
+	                        'size'          => '5',
+                        	'description'   => 'px',
+                    	),
+                    	// Line Height
+                    	'bber_line_height'     => array(
+	                        'type'          => 'text',
+	                        'label'         => __('Before/After Row Line Height', 'bb-expandable-row'),
+	                        'placeholder'   => '22',
+	                        'maxlength'     => '3',
+	                        'size'          => '5',
+	                        'description'   => 'px',
+                    	),
+						
+					)//fields
+				),//title typography
+			),//sections
+		),// general tab
+		'before_click' => array(
+			'title'	=> __( 'Before Click' ,'bb-expandable-row'),
+			'sections' => array(
+				'before_click_title'	=> array(
+					'title'	=> __('Before Click Title','bb-expandable-row'),
+					'fields'	=> array(
+						// row title
+						'bber_row_title'	=> array(
+							'type'	=> 'text',
+							'label'         => __('Before Click Title', 'bb-expandable-row'),
+							'maxlength'     => '',
+                    		'size'          => '',
+                    		'placeholder'   => '',
+						),
+						// title color
+						'bber_typo_title_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Before Click Title Color', 'bb-expandable-row'),
+							'default'	=> '000',
+							'show_reset'=> true,
+						),
+						'bber_typo_title_hover_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Before Click Title Hover Color', 'bb-expandable-row'),
+							'show_reset'=> true,
+						),
+					),// fields
+				),// before click title
 				'row-icon'				=> array(
 					'title'	 => __('Row Icon', 'bb-expandable-row'),
 					'fields' => array(
 						// icon
 						'bber_row_icon'	=> array(
 							'type'		 => 'icon',
-							'label'      => __('Row Icon', 'bb-expandable-row'),
+							'label'      => __('Before Click Row Icon', 'bb-expandable-row'),
 							'show_remove'=> true,
 						),
 						// icon color
 						'bber_row_icon_color'	=> array(
 							'type'		=> 'color',
-							'label'		=> __('Icon Color', 'bb-expandable-row'),
+							'label'		=> __('Before Click Icon Color', 'bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						// hover icon color
 						'bber_row_icon_hover_color'	=> array(
 							'type'		=> 'color',
-							'label'		=> __('Icon Hover Color', 'bb-expandable-row'),
+							'label'		=> __('Before Click Icon Hover Color', 'bb-expandable-row'),
 							'show_reset'=> true,
 						)
 					)
 				),// row icon section
-
-				'after-click-row-icon'	=> array(
-					'title'	 => __('After Click Row Icon', 'bb-expandable-row'),
-					'fields' => array(
-						// icon
-						'bber_after_click_row_icon'	=> array(
-							'type'		 => 'icon',
-							'label'      => __('After Click Row Icon', 'bb-expandable-row'),
-							'show_remove'=> true,
-						),
-						// icon color
-						'bber_after_click_row_icon_color'	=> array(
-							'type'		=> 'color',
-							'label'		=> __('Icon Color', 'bb-expandable-row'),
-							'show_reset'=> true,
-							'description'	=> __('<br/><br/><br/>If not set it inherit color of Row Icon.','bb-expandable-row'),
-							'help'		=>	__( 'Color of Icon After Click on Row (Optional)','bb-expandable-row'),
-						),
-
-						// hover icon color
-						'bber_after_click_row_icon_hover_color'	=> array(
-							'type'		=> 'color',
-							'label'		=> __('Icon Hover Color', 'bb-expandable-row'),
-							'show_reset'=> true,
-							'description'	=> __('<br/><br/><br/>If not set it inherit hover color of Row Icon.','bb-expandable-row'),
-							'help'		=>	__( 'Hover Color of Icon After Click on Row (Optional)','bb-expandable-row'),
-						)
-					)
-				),// after click row icon section
-
 				'row-image'	=> array(
-					'title'	=> __('Row Image', 'bb-expandable-row'),
+					'title'	=> __('Before Click Row Image', 'bb-expandable-row'),
 					'fields'=> array(
 						'bber_row_image' => array(
 							'type'	=> 'photo',
@@ -384,47 +295,13 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						),
 					)
 				),// row image background section
-
-				'after-click-row-image'	=> array(
-					'title'	=> __('After Click Row Image', 'bb-expandable-row'),
-					'fields'=> array(
-						'bber_after_click_row_image' => array(
-							'type'	=> 'photo',
-							'label'	=> __( 'Select Image','bb-expandable-row'),
-							'show_remove'	=> true,
-						),
-					)
-				)// row image background section
-			)//section
-		),// Icon/Image
-
-		'background'	=> array(
-			'title'     => __('Background', 'bb-expandable-row'),
-			'sections'  => array(
 				'row-background'			 => array(
-					'title'	=> __('Row Background', 'bb-expandable-row'),
-					'fields'  => array(
-						'bber_row_bg_type' => array(
-							'type'	=> 'select',
-							'label'	=> __('Background Type'),
-							'options'	=> array(
-								'color'	=> __('Color', 'bb-expandable-row'),
-								'image'	=> __('Image', 'bb-expandable-row')
-							),
-							'default'	=> 'color',
-							'toggle'	=> array(
-								'color'	=> array(
-									'fields'	=> array('bber_row_background_color','bber_background_opacity')
-								),
-								'image'	=> array(
-									'fields'	=> array('bber_row_background_image','bber_row_bg_img_repeat','bber_row_bg_img_position','bber_row_bg_img_attachment')
-								)
-							),
-						),
+					'title'	=> __('Before Click Row Background', 'bb-expandable-row'),
+					'fields'  => array(				
 						// background color
 						'bber_row_background_color'	=> array(
 							'type'		=> 'color',
-							'label'		=> __('Background Color', 'bb-expandable-row'),
+							'label'		=> __('Before Click Background Color', 'bb-expandable-row'),
 							'default'	=> 'c1c1c1',
 							'show_reset'=> true,
 							'description'	=> __('<br/><br/><br/>Default color is c1c1c1 if not set.','bb-expandable-row')
@@ -432,7 +309,20 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						// opacity
 						'bber_background_opacity'     => array(
                         'type'          => 'text',
-                        'label'         => __('Opacity', 'bb-expandable-row'),
+                        'label'         => __('Before Click Background Opacity', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '',
+                        'description'   => '%',
+                    	),
+                    	'bber_row_background_hover_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Before Click Hover Background Color', 'bb-expandable-row'),
+							'show_reset'=> true,
+						),
+						'bber_background_hover_opacity'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Before Click Background Opacity', 'bb-expandable-row'),
                         'maxlength'     => '3',
                         'size'          => '3',
                         'placeholder'   => '',
@@ -482,27 +372,129 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						
 					)//fields
 				),//row background section
+				'title_padding'  => array(
+					'title'		=> __('Before Click Row Padding', 'bb-expandable-row'),
+					'fields'	=> array(
+						// padding top
+						'bber_title_padding_top'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Top', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding bottom
+						'bber_title_padding_bottom'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Bottom', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding left
+						'bber_title_padding_left'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Left', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding right
+						'bber_title_padding_right'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Right', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+					)// fields
+				),// title padding section
+			),//sections
+		),// before click row
+		'after_click'  => array(
+			'title'	=> __( 'After Click' ,'bb-expandable-row'),
+			'sections' => array(
+				'after_click_title'	=> array(
+					'title'	=> __('After Click Title','bb-expandable-row'),
+					'fields'	=> array(
+						// after click row title
+						'bber_after_click_row_title'	=> array(
+							'type'	=> 'text',
+							'label'         => __('After Click Row Title', 'bb-expandable-row'),
+							'maxlength'     => '',
+                    		'size'          => '',
+                    		'placeholder'   => '',
+						),
+						// after click title color
+						'bber_typo_ac_title_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('After Click Title Color', 'bb-expandable-row'),
+							'default'	=> '000',
+							'show_reset'=> true,
+						),
+						'bber_typo_ac_title_hover_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('After Click Title Hover Color', 'bb-expandable-row'),
+							'show_reset'=> true,
+						),
+						'bber_shadow_effect'	=> array(
+							'type'	=> 'select',
+							'label'	=> __( 'Shadow Effect', 'bb-expandable-row'),
+							'options'	=> array(
+								'no'	=> __('No','bb-expandable-row'),
+								'yes'	=> __('Yes','bb-expandable-row'),
+							),
+							'default'	=> 'no',
+							'help'	=> 'You will observ this effect at bottom of row after click.',
+						),
+					),// fields
+				),// after click title
+				
+				'after-click-row-icon'	=> array(
+					'title'	 => __('After Click Row Icon', 'bb-expandable-row'),
+					'fields' => array(
+						// icon
+						'bber_after_click_row_icon'	=> array(
+							'type'		 => 'icon',
+							'label'      => __('After Click Row Icon', 'bb-expandable-row'),
+							'show_remove'=> true,
+						),
+						// icon color
+						'bber_after_click_row_icon_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Icon Color', 'bb-expandable-row'),
+							'show_reset'=> true,
+							'description'	=> __('<br/><br/><br/>If not set it inherit color of Row Icon.','bb-expandable-row'),
+							'help'		=>	__( 'Color of Icon After Click on Row (Optional)','bb-expandable-row'),
+						),
+
+						// hover icon color
+						'bber_after_click_row_icon_hover_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Icon Hover Color', 'bb-expandable-row'),
+							'show_reset'=> true,
+							'description'	=> __('<br/><br/><br/>If not set it inherit hover color of Row Icon.','bb-expandable-row'),
+							'help'		=>	__( 'Hover Color of Icon After Click on Row (Optional)','bb-expandable-row'),
+						)
+					)
+				),// after click row icon section
+				'after-click-row-image'	=> array(
+					'title'	=> __('After Click Row Image', 'bb-expandable-row'),
+					'fields'=> array(
+						'bber_after_click_row_image' => array(
+							'type'	=> 'photo',
+							'label'	=> __( 'Select Image','bb-expandable-row'),
+							'show_remove'	=> true,
+						),
+					)
+				),// row image background section
 				'after-click-row-background' => array(
 					'title'	=> __('After Click Row Background', 'bb-expandable-row'),
 					'fields'  => array(
-						'bber_row_ac_bg_type' => array(
-							'type'	=> 'select',
-							'label'	=> __('Background Type'),
-							'options'	=> array(
-								'color'	=> __('Color', 'bb-expandable-row'),
-								'image'	=> __('Image', 'bb-expandable-row')
-							),
-							'default'	=> 'color',
-							'toggle'	=> array(
-								'color'	=> array(
-									'fields'	=> array('bber_after_click_row_background_color','bber_after_click_background_opacity')
-								),
-								'image'	=> array(
-									'fields'	=> array('bber_row_ac_background_image','bber_row_ac_bg_img_repeat','bber_row_ac_bg_img_position','bber_row_ac_bg_img_attachment')
-								)
-							),
-						),
-						// background color
 						'bber_after_click_row_background_color'	=> array(
 							'type'		=> 'color',
 							'label'		=> __('Background Color', 'bb-expandable-row'),
@@ -510,10 +502,22 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 							'show_reset'=> true,
 							'description'	=> __('<br/><br/><br/>Default color is c1c1c1 if not set.','bb-expandable-row')
 						),
-						// opacity
 						'bber_after_click_background_opacity'     => array(
                         'type'          => 'text',
                         'label'         => __('Opacity', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '',
+                        'description'   => '%',
+                    	),
+                    	'bber_ac_row_background_hover_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('After Click Hover Background Color', 'bb-expandable-row'),
+							'show_reset'=> true,
+						),
+						'bber_ac_background_hover_opacity'     => array(
+                        'type'          => 'text',
+                        'label'         => __('After Click Hover Background Opacity', 'bb-expandable-row'),
                         'maxlength'     => '3',
                         'size'          => '3',
                         'placeholder'   => '',
@@ -563,7 +567,154 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						
 					)//fields
 				),// after click row background section
+				'after_click_title_padding'  => array(
+					'title'		=> __('After Click Row Padding', 'bb-expandable-row'),
+					'fields'	=> array(
+						// padding top
+						'bber_ac_title_padding_top'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Top', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding bottom
+						'bber_ac_title_padding_bottom'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Bottom', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding left
+						'bber_ac_title_padding_left'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Left', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+                    	// padding right
+						'bber_ac_title_padding_right'     => array(
+                        'type'          => 'text',
+                        'label'         => __('Right', 'bb-expandable-row'),
+                        'maxlength'     => '3',
+                        'size'          => '3',
+                        'placeholder'   => '20',
+                        'description'   => 'px',
+                    	),
+					)// fields
+				),// title padding section
+			),//sections
+		),// after click row
+		'expandable_row' => array(
+			'title'	=> __( 'Expandable Row' ,'bb-expandable-row'),
+			'sections' => array(
 
+				'content'	=>	array(
+					'title' => __( 'Content', 'bb-expandable-row'),
+					'fields'	=> array(
+						// content type
+						'bber_content_type'	=> array(
+							'type'	=>	'select',
+							'label'         => __('Type', 'bb-expandable-row'),
+							'options'	=> array(
+								'content'	=> __('Content', 'bb-expandable-row'),
+								'photo'		=> __('Photo', 'bb-expandable-row'),
+								'iframe'	=> __('Youtube Video', 'bb-expandable-row'),
+								'saved_rows'        => array(
+                                	'label'         => __('Saved Rows', 'bb-expandable-row'),
+                                	'premium'       => true
+                            	),
+                            	'saved_modules'     => array(
+	                                'label'         => __('Saved Modules', 'bb-expandable-row'),
+	                                'premium'       => true
+	                            ),
+	                            'saved_page_templates'      => array(
+                                	'label'         => __('Saved Page Templates', 'bb-expandable-row'),
+                                	'premium'       => true
+                            	),
+							),
+							'default'	=> 'content',
+							'toggle'	=> array(
+								'content'	=> array(
+									'fields'	=> array('bber_desc_align','bber_editor','bber_typo_content_color')
+								),
+								'photo'		=> array(
+									'fields'	=> array('bber_desc_align','bber_desc_photo')
+								),
+								'iframe'	=> array(
+									'fields'	=> array('bber_desc_align','bber_desc_video')
+								),
+								'saved_rows' => array(
+									'fields' => array('bber_saved_row')
+								),
+								'saved_modules' => array(
+									'fields' => array('bber_saved_module')
+								),
+								'saved_page_templates' => array(
+									'fields' => array('bber_saved_page')
+								),
+							),
+							'help'	=> __('Kind of content want to show after expand.','bb-expandable-row')
+						),
+						// content color
+						'bber_typo_content_color'	=> array(
+							'type'		=> 'color',
+							'label'		=> __('Description Content Color', 'bb-expandable-row'),
+							'show_reset'=> true,
+						),
+						// content align
+						'bber_desc_align'	=> array(
+							'type'	=> 'select',
+							'label'	=> __('Content Alignment','bb-expandable-row'),
+							'options'	=> array(
+								'default'	=> __('Default','bb-expandable-row'),
+								'left'	=> __('Left','bb-expandable-row'),
+								'right'	=> __('Right','bb-expandable-row'),
+								'center'	=> __('Center','bb-expandable-row')
+							),
+							'default'	=> 'default',
+						),
+						// editor
+						'bber_editor' => array(
+						    'type'          => 'editor',
+						    'media_buttons' => true,
+						    'rows'          => 10
+						),
+						// photo
+						'bber_desc_photo'	=> array(
+							'type'	=> 'photo',
+							'label'	=> __( 'Select Photo', 'bb-expandable-row'),
+							'show_remove'	=> true,
+						),
+						// video
+						'bber_desc_video'	=> array(
+							'type'	=> 'text',
+							'label'	=> __( 'URL','bb-expandable-row'),
+							'description'	=> __( 'Copied URL of Video Paste Here','bb-expandable-row'),
+							'help' => __('URL which works iframe structure.','bb-expandable-row')
+						),
+						'bber_saved_row'	=> array(
+							'type'                  => 'select',
+                        	'label'                 => __('Select Row', 'bb-expandable-row'),
+                        	'options'               => BSFBBERhelper::get_saved_row_template(),
+						),
+						'bber_saved_module'	=> array(
+							'type'                  => 'select',
+                        	'label'                 => __('Select Modules', 'bb-expandable-row'),
+                        	'options'               => BSFBBERhelper::get_saved_module_template(),
+						),
+						'bber_saved_page'	=> array(
+							'type'                  => 'select',
+                        	'label'                 => __('Select Templates', 'bb-expandable-row'),
+                        	'options'               => BSFBBERhelper::get_saved_page_template(),
+						),
+					)//fields
+				),// Content section
 				'content-row-background' => array(
 					'title'	=> __('Content Row Background', 'bb-expandable-row'),
 					'fields'  => array(
@@ -645,157 +796,7 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
 						),
 						
 					)//fields
-				)// content row background section
-			)//section
-		),// background
-
-		'typography'	=> array(
-			'title'     => __('Typography', 'bb-expandable-row'),
-			'sections'  => array(
-				'title_tyopgraphy'	=> array(
-					'title'	=> __('Typography', 'bb-expandable-row'),
-					'fields'	=> array(
-						// font typography
-						'bber_font'	=> array(
-							'type'	=> 'font',
-							'label'	=>	__('Typography','bb-expandable-row'),
-							'default'       => array(
-                            	'family'        => 'Defaults',
-                            	'weight'        => 'Defaults'
-							),
-							'preview'       => array(
-                            	'type'          => 'font',
-                            	'selector'      => '.bb-expandable-trigger-row'  
-                        	)
-						),
-						// Font Size
-                        'bber_font_size'     => array(
-	                        'type'          => 'text',
-	                        'label'         => __('Font Size', 'bb-expandable-row'),
-	                        'placeholder'   => '18',
-	                        'maxlength'     => '3',
-	                        'size'          => '5',
-                        	'description'   => 'px',
-                    	),
-                    	// Line Height
-                    	'bber_line_height'     => array(
-	                        'type'          => 'text',
-	                        'label'         => __('Line Height', 'bb-expandable-row'),
-	                        'placeholder'   => '22',
-	                        'maxlength'     => '3',
-	                        'size'          => '5',
-	                        'description'   => 'px',
-                    	),
-                    	// title color
-						'bber_typo_title_color'	=> array(
-							'type'		=> 'color',
-							'label'		=> __('Title Color', 'bb-expandable-row'),
-							'default'	=> '000',
-							'show_reset'=> true,
-						),
-						// after click title color
-						'bber_typo_ac_title_color'	=> array(
-							'type'		=> 'color',
-							'label'		=> __('After Click Title Color', 'bb-expandable-row'),
-							'default'	=> '000',
-							'show_reset'=> true,
-						),
-						// content color
-						'bber_typo_content_color'	=> array(
-							'type'		=> 'color',
-							'label'		=> __('Description Content Color', 'bb-expandable-row'),
-							'show_reset'=> true,
-						),
-					)//fields
-				)//title typography
-			)//section
-		),// typography
-
-		'padding'		=> array(
-			'title'     => __('Padding', 'bb-expandable-row'),
-			'sections'  => array(
-				'title_padding'  => array(
-					'title'		=> __('Row Padding', 'bb-expandable-row'),
-					'fields'	=> array(
-						// padding top
-						'bber_title_padding_top'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Top', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '20',
-                        'description'   => 'px',
-                    	),
-                    	// padding bottom
-						'bber_title_padding_bottom'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Bottom', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '20',
-                        'description'   => 'px',
-                    	),
-                    	// padding left
-						'bber_title_padding_left'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Left', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '20',
-                        'description'   => 'px',
-                    	),
-                    	// padding right
-						'bber_title_padding_right'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Right', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '20',
-                        'description'   => 'px',
-                    	),
-					)// fields
-				),// title padding section
-				'after_click_title_padding'  => array(
-					'title'		=> __('After Click Row Padding', 'bb-expandable-row'),
-					'fields'	=> array(
-						// padding top
-						'bber_ac_title_padding_top'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Top', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '20',
-                        'description'   => 'px',
-                    	),
-                    	// padding bottom
-						'bber_ac_title_padding_bottom'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Bottom', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '20',
-                        'description'   => 'px',
-                    	),
-                    	// padding left
-						'bber_ac_title_padding_left'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Left', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '20',
-                        'description'   => 'px',
-                    	),
-                    	// padding right
-						'bber_ac_title_padding_right'     => array(
-                        'type'          => 'text',
-                        'label'         => __('Right', 'bb-expandable-row'),
-                        'maxlength'     => '3',
-                        'size'          => '3',
-                        'placeholder'   => '20',
-                        'description'   => 'px',
-                    	),
-					)// fields
-				),// title padding section
+				),// content row background section
 				'content_padding'  => array(
 					'title'		=> __('Content Padding', 'bb-expandable-row'),
 					'fields'	=> array(
@@ -836,9 +837,9 @@ FLBuilder::register_module( 'BSFBBExpandableRow', array(
                         'description'   => 'px',
                     	),
 					)// fields
-				)// title padding section
-			)//section
-		)// padding
-
-	) // main array
-); // register module
+				),// title padding section
+			),//sections
+		),// expandable row
+		
+	)
+);

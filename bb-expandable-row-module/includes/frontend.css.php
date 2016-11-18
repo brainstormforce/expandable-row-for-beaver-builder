@@ -4,11 +4,6 @@
     text-align: <?php echo $settings->bber_title_alignment; ?>;
 }
 <?php endif ?>
-<?php if($settings->bber_ac_title_alignment != 'default'): ?>
-.fl-node-<?php echo $id; ?> .content-align.bber-clicked {
-    text-align: <?php echo $settings->bber_ac_title_alignment; ?>;
-}
-<?php endif ?>
 
 /* title padding */
 .fl-node-<?php echo $id; ?> .bber-row-padding {
@@ -76,7 +71,7 @@
 
 /* Title Row Background Color */
 .fl-node-<?php echo $id; ?> .bber-clicked {
-	<?php if($settings->bber_row_ac_bg_type == 'color'):?>
+	<?php if($settings->bber_row_bg_type == 'color'):?>
 		background-color: <?php echo BSFBBERhelper::toRBGA( $settings->bber_after_click_row_background_color, $settings->bber_after_click_background_opacity ); ?>;
 	<?php endif ?>
 	<?php if( $settings->bber_shadow_effect == 'yes'): ?>
@@ -126,6 +121,7 @@ color:<?php echo ($settings->bber_typo_ac_title_color != '') ? '#'.$settings->bb
 }
 <?php endif?>
 
+/* Content background */
 .fl-node-<?php echo $id; ?> .bb-expandable-toggle-row {
 	<?php if($settings->bber_content_row_type == 'color'): ?>
 		background-color: <?php echo BSFBBERhelper::toRBGA( $settings->bber_content_row_color, $settings->bber_content_row_opacity ); ?>;
@@ -135,4 +131,19 @@ color:<?php echo ($settings->bber_typo_ac_title_color != '') ? '#'.$settings->bb
     	background-position: <?php echo $settings->bber_content_row_img_position ;?>;
     	background-attachment: <?php echo $settings->bber_content_row_img_attachment ;?>;
 	<?php endif ?>
+}
+
+/* Hover Color */
+.fl-node-<?php echo $id; ?> .bb-expandable-trigger-row:hover {
+	color: #<?php echo $settings->bber_typo_title_hover_color; ?>;
+	<?php if($settings->bber_row_bg_type == 'color'):?>
+	background-color: <?php echo BSFBBERhelper::toRBGA( $settings->bber_row_background_hover_color, $settings->bber_background_hover_opacity ); ?>;
+	<?php endif ?>
+}
+
+.fl-node-<?php echo $id; ?> .bb-expandable-trigger-row.bber-clicked:hover { 
+	color: #<?php echo $settings->bber_typo_ac_title_hover_color; ?>;
+	<?php if($settings->bber_row_bg_type == 'color'):?>
+	background-color: <?php echo BSFBBERhelper::toRBGA( $settings->bber_ac_row_background_hover_color, $settings->bber_ac_background_hover_opacity ); ?>;
+	<?php endif ?>	
 }

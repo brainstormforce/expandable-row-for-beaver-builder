@@ -31,7 +31,7 @@ jQuery(document).ready(function(){
 		<?php endif?>
 
 		// toggle row backgrounds
-		<?php if( ($settings->bber_row_bg_type == 'image') && ($settings->bber_row_ac_bg_type == 'image') ):?>
+		<?php if( $settings->bber_row_bg_type == 'image' ):?>
 		
 			// toggle background image
 			var bber_bg_src = ( (jQuery(".fl-node-<?php echo $id;?> .bb-expandable-trigger-row").css("background-image") == 'url("<?php echo $settings->bber_row_background_image_src;?>")' ) ? "url('<?php echo $settings->bber_row_ac_background_image_src;?>')" : "url('<?php echo $settings->bber_row_background_image_src;?>')" );
