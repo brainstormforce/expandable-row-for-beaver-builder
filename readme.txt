@@ -3,16 +3,16 @@ Contributors: brainstormforce, akashd
 Donate link: https://www.brainstormforce.com/payment/
 Requires at least: 4.4
 Tags: beaver builder, page builder plugin, expandable, expand, row expand, row
-Stable tag: 1.0
+Stable tag: 1.0.0
 Tested up to: 4.6
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.en.html
 
 Simple Expandable Row for Beaver Builder.
 
 == Description ==
 
-Simple Expandable Row for Beaver Builder.
+Simple Expandable Row for Beaver Builder. You can use your saved rows, saved modules and saved templates also. Contain more options.
 
 == Installation ==
 

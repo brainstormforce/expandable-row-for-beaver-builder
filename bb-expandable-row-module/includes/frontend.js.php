@@ -1,4 +1,5 @@
 jQuery(document).ready(function(){
+
 	jQuery(".fl-node-<?php echo $id;?> .bb-expandable-trigger-row").click(function(){
 
 		// toggle class
