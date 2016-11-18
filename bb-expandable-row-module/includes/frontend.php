@@ -44,7 +44,7 @@
 	</div>
 
 	<!-- Content Row -->
-	<div class="bb-expandable-toggle-row bber-content-padding">
+	<div class="bb-expandable-toggle-row bber-content-padding bber-shrinked">
 
 			<div class="bber-content-section">
 

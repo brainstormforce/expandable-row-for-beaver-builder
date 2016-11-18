@@ -3,7 +3,7 @@ jQuery(document).ready(function(){
 
 		// toggle class
 		jQuery(".fl-node-<?php echo $id;?> .bb-expandable-trigger-row").toggleClass("bber-clicked");
-		jQuery(".fl-node-<?php echo $id;?> .bb-expandable-toggle-row").toggleClass("bber-expanded");
+		jQuery(".fl-node-<?php echo $id;?> .bber-shrinked, .fl-node-<?php echo $id;?> .bber-expanded").toggleClass("bber-shrinked bber-expanded");
 
 		// appearing effect
 		<?php if( $settings->bber_row_effect == 'slide' ): ?>
@@ -50,6 +50,11 @@ jQuery(document).ready(function(){
 			jQuery(".fl-node-<?php echo $id;?> .bb-expandable-trigger-row").css({"background-attachment":bber_bg_attach });
 		
 		<?php endif ?>
+
+			// youtube video stop
+			<?php if($settings->bber_content_type == 'iframe'): ?>
+				jQuery(".fl-node-<?php echo $id;?> .bber-shrinked iframe").attr('src', jQuery(".fl-node-<?php echo $id;?> iframe").attr('src'));			
+			<?php endif ?>
 
 	});// trigger/click
 }); // document.ready
