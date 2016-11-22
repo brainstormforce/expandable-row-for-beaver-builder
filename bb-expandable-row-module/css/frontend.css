@@ -1,42 +1,37 @@
 .bb-expandable-row-module {
-    width: 100%;
+	width: 100%;
 }
-
 .bb-expandable-trigger-row {
-    cursor: pointer;
-    background-color: #c1c1c1;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
+	cursor: pointer;
+	background-color: #c1c1c1;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
 }
-
 .bb-expandable-toggle-row {
-    display: none;
-    background-color: #f7f7f7;
+	display: none;
+	background-color: #f7f7f7;
 }
-
 .bber-icon-size {
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    -ms-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
-    transition: all 0.2s ease-out;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-ms-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
 }
-
 .bber-iframe {
-    position: relative;
-    padding-bottom: 56.25%;
-    /*padding-top:30px;*/
-    height: 0;
-    overflow: hidden;
+	position:relative;
+	padding-bottom:56.25%;
+	/*padding-top:30px;*/
+	height:0;
+	overflow:hidden;
 }
-
 .bber-iframe iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
 }
