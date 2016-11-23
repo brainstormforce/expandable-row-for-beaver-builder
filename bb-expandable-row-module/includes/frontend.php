@@ -6,40 +6,40 @@
 
 		<?php if( $settings->bber_image_type == 'icon' && $settings->bber_icon_position == 'top'): ?>
 			<!-- Icon at Top -->
-			<div><?php echo BSFBBExpandableRow::render_icon($settings->bber_row_icon); ?></div>
+			<div><?php echo $module->render_icon($settings->bber_row_icon); ?></div>
 		<?php elseif ( $settings->bber_image_type == 'image' && $settings->bber_image_position == 'top'): ?>
 			<!-- Image at Top -->
-			<div><?php echo BSFBBExpandableRow::render_image($settings); ?></div>
+			<div><?php echo $module->render_image($settings); ?></div>
 		<?php endif ?>
 
 			<div class="bber-title-section">
 
 				<?php if( $settings->bber_image_type == 'icon' && $settings->bber_icon_position == 'left'): ?>
 					<!-- Icon at Left -->
-					<span><?php echo BSFBBExpandableRow::render_icon($settings->bber_row_icon); ?></span>
+					<span><?php echo $module->render_icon($settings->bber_row_icon); ?></span>
 				<?php elseif ( $settings->bber_image_type == 'image' && $settings->bber_image_position == 'left'): ?>
 					<!-- Image at Left -->
-					<span><?php echo BSFBBExpandableRow::render_image($settings); ?></span>
+					<span><?php echo $module->render_image($settings); ?></span>
 				<?php endif ?>
 
 					<span class="bber-title"><?php echo $settings->bber_row_title; ?></span>
 
 				<?php if( $settings->bber_image_type == 'icon' && $settings->bber_icon_position == 'right'): ?>
 					<!-- Icon at Right -->
-					<span><?php echo BSFBBExpandableRow::render_icon($settings->bber_row_icon); ?></span>
+					<span><?php echo $module->render_icon($settings->bber_row_icon); ?></span>
 				<?php elseif ( $settings->bber_image_type == 'image' && $settings->bber_image_position == 'right'): ?>
 					<!-- Image at Right -->
-					<sapn><?php echo BSFBBExpandableRow::render_image($settings); ?></span>
+					<sapn><?php echo $module->render_image($settings); ?></span>
 				<?php endif ?>
 
 			</div>
 			
 		<?php if( $settings->bber_image_type == 'icon' && $settings->bber_icon_position == 'bottom'): ?>
 			<!-- Icon at Bottom -->
-			<div><?php echo BSFBBExpandableRow::render_icon($settings->bber_row_icon); ?></div>
+			<div><?php echo $module->render_icon($settings->bber_row_icon); ?></div>
 		<?php elseif ( $settings->bber_image_type == 'image' && $settings->bber_image_position == 'bottom'): ?>
 			<!-- Image at Bottom -->
-			<div><?php echo BSFBBExpandableRow::render_image($settings); ?></div>
+			<div><?php echo $module->render_image($settings); ?></div>
 		<?php endif ?>
 	</div>
 
@@ -50,7 +50,7 @@
 
 			<div class="bber-<?php echo $settings->bber_content_type; ?>">
 
-				<?php BSFBBExpandableRow::get_content($settings); ?>
+				<?php $module->get_content($settings); ?>
 					
 			</div>
 		</div>

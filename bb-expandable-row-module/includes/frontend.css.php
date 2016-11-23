@@ -1,9 +1,7 @@
 /* title alignment */
-<?php if($settings->bber_title_alignment != 'default'): ?>
 .fl-node-<?php echo $id; ?> .content-align{
     text-align: <?php echo $settings->bber_title_alignment; ?>;
 }
-<?php endif ?>
 
 /* title padding */
 .fl-node-<?php echo $id; ?> .bber-row-padding {
@@ -33,6 +31,13 @@
 .fl-node-<?php echo $id; ?> .bber-icon-size {
 	font-size:<?php echo ($settings->bber_row_icon_size != '') ? $settings->bber_row_icon_size : '32' ?>px;
 }
+
+/* Icon verticle alignment */
+<?php if($settings->bber_image_type=='icon'):?>
+.fl-node-<?php echo $id; ?> i#bber-icon {
+    vertical-align: middle;
+}
+<?php endif?>
 
 /* Row Icon Color */
 .fl-node-<?php echo $id; ?> .content-align #bber-icon {
@@ -102,14 +107,14 @@ color:<?php echo ($settings->bber_typo_ac_title_color != '') ? '#'.$settings->bb
 /* Typography */
 .fl-node-<?php echo $id; ?> .bb-expandable-trigger-row {
 	font-family:"<?php echo $settings->bber_font['family']; ?>";
-	font-weight:<?php echo ($settings->bber_font['weight'] !='regular') ? $settings->bber_font['weight'] : '500';?>;
+	font-weight:<?php echo ($settings->bber_font['weight']=='regular') ? 'normal' : $settings->bber_font['weight'] ; ?> ;
     font-size: <?php echo ($settings->bber_font_size != '') ? $settings->bber_font_size : '18'; ?>px;
     line-height: <?php echo ($settings->bber_line_height != '') ? $settings->bber_line_height : '22'; ?>px;	
     color:#<?php echo ($settings->bber_typo_title_color != '') ? $settings->bber_typo_title_color : '000' ?>;
 }
 
 /* Content Description */
-<?php if($settings->bber_desc_align != 'default'):?>
+<?php if($settings->bber_content_type != 'content' || $settings->bber_content_type != 'photo' || $settings->bber_content_type != 'iframe' ):?>
 .fl-node-<?php echo $id; ?> .bber-content-section {
 	text-align: <?php echo $settings->bber_desc_align; ?>;	
 }
