@@ -9,7 +9,7 @@
  * Text Domain: bb-expandable-row
  */
 define('BB_EXPAND_ROW_DIR', plugin_dir_path( __FILE__ ) );
-define('BB_EXPAND_ROW_URL', plugins_url( __FILE__ ) );
+define('BB_EXPAND_ROW_URL', plugins_url('/', __FILE__ ) );
 
 // check of BSFBBExpandRowCHK class already exist or not
 if( !class_exists('BSFBBExpandRowCHK') )
