@@ -278,8 +278,8 @@ function bb_er_row_css( $css, $nodes, $global_settings ) {
 					width:100%;
 					color: #<?php echo ($row->settings->er_bc_title_color != '') ? $row->settings->er_bc_title_color : '000' ; ?>;
 					background-color:#<?php echo ($row->settings->er_bc_bg_color != '') ? $row->settings->er_bc_bg_color : 'c7c7c7' ; ?>;
-					font-family: <?php echo $row->settings->er_title_typography['family']; ?>;
-					font-weight: <?php echo ($row->settings->er_title_typography['weight'] != 'Defaults' ) ? $row->settings->er_title_typography : '500' ; ?>;;
+					font-family: <?php echo ($row->settings->er_title_typography['family'] != 'Default')? $row->settings->er_title_typography : 'inherit' ?>;
+					font-weight: <?php echo ($row->settings->er_title_typography['weight'] != 'default' ) ? $row->settings->er_title_typography : '500' ; ?>;
 					font-size: <?php echo ($row->settings->er_font_size != '' ) ? $row->settings->er_font_size : '28' ; ?>px;
 					line-height: <?php echo ($row->settings->er_line_height != '' ) ? $row->settings->er_line_height : '32' ; ?>px;
 					text-align: <?php echo $row->settings->er_title_align; ?>;
@@ -312,14 +312,17 @@ function bb_er_row_structure ( $js, $nodes, $global_settings ) {
 		?>
 		<?php if ( $row->settings->is_enable == 'yes' ): ?>
 			(function($) {
-				var html = '<div class="bb-er-row"><div class="bb-er-title-section"><span><i class="bber-icon-left"></i></span><span class="bb-er-title"><?php echo htmlspecialchars($row->settings->er_bc_title); ?></span><span><i class="bber-icon-right"></i></span></div></div>';
+				var html = '<div class="bb-er-row"><div><i class="bber-icon-top"></i></div><div class="bb-er-title-section"><span><i class="bber-icon-left"></i></span><span class="bb-er-title"><?php echo htmlspecialchars($row->settings->er_bc_title); ?></span><span><i class="bber-icon-right"></i></span><div><i class="bber-icon-bottom"></i></div></div></div>';
 				$('.fl-row.fl-node-<?php echo $row->node; ?>').prepend(html);
 
 				<?php if($row->settings->er_icon_position == 'left'): ?>
 					$('.fl-row.fl-node-<?php echo $row->node; ?> .bber-icon-left').addClass('bber-icon <?php echo $row->settings->er_bc_icon; ?>');
-				<?php endif?>
-				<?php if($row->settings->er_icon_position == 'right'): ?>
+				<?php elseif ($row->settings->er_icon_position == 'right'): ?>
 					$('.fl-row.fl-node-<?php echo $row->node; ?> .bber-icon-right').addClass('bber-icon <?php echo $row->settings->er_bc_icon; ?>');
+				<?php elseif ($row->settings->er_icon_position == 'top'): ?>
+					$('.fl-row.fl-node-<?php echo $row->node; ?> .bber-icon-top').addClass('bber-icon <?php echo $row->settings->er_bc_icon; ?>');
+				<?php elseif ($row->settings->er_icon_position == 'bottom'): ?>
+					$('.fl-row.fl-node-<?php echo $row->node; ?> .bber-icon-bottom').addClass('bber-icon <?php echo $row->settings->er_bc_icon; ?>');
 				<?php endif?>
 
 				$('.fl-node-<?php echo $row->node; ?> .bb-er-row').click(function() {
@@ -334,6 +337,8 @@ function bb_er_row_structure ( $js, $nodes, $global_settings ) {
 					<?php if( $row->settings->er_img_type == 'icon' ): ?>
 						$('.fl-node-<?php echo $row->node; ?> .bber-icon').toggleClass("<?php echo $row->settings->er_bc_icon; ?> <?php echo $row->settings->er_ac_icon; ?>")
 					<?php endif ?>
+
+
 				});
 			})(jQuery);
 		<?php endif?>
