@@ -29,7 +29,7 @@ function bb_er_row_extender( $form, $id ) {
 					'fields'	=> array(
 						'er_img_type'	=> array(
 							'type'	=> 'select',
-							'label'	=> __('Image Type', ''),
+							'label'	=> __('Icon/Image Type', ''),
 							'options'	=> array(
 								'none'	=> __( 'None' ,''),
 								'icon'	=> __('Icon',''),
@@ -45,26 +45,13 @@ function bb_er_row_extender( $form, $id ) {
 								)
 							),
 						),
-						'er_title_align'	=> array(
-							'type'	=> 'select',
-							'label'	=> __('Title Align', ''),
-							'options'	=> array(
-								'center'	=> __('Center', ''),
-								'left'	=> __('Left', ''),
-								'right'	=> __('Right', '')
-							),
-							'default'	=> 'center',
-						),
-						'er_icon_position'	=> array(
-							'type'	=> 'select',
-							'label'	=> __( 'Icon Position' ,''),
-							'options'	=> array(
-								'top'	=> __( 'Top' ,''),
-								'bottom'	=> __( 'Bottom' ,''),
-								'left'	=> __( 'Left' ,''),
-								'right'	=> __( 'Right' ,''),
-							),
-							'default'	=> 'left',
+						'er_image_size'	=> array(
+							'type'	=> 'text',
+							'label'	=> __( 'Image Size' ,''),
+							'maxlength'	=> '3',
+							'size'	=> '5',
+							'placeholder'	=> '',
+							'description'	=> 'px',
 						),
 						'er_icon_size'	=> array(
 							'type'	=> 'text',
@@ -74,14 +61,27 @@ function bb_er_row_extender( $form, $id ) {
 							'placeholder'	=> '',
 							'description'	=> 'px',
 						),
-						'er_image_size'	=> array(
-							'type'	=> 'text',
-							'label'	=> __( 'Image Size' ,''),
-							'maxlength'	=> '3',
-							'size'	=> '5',
-							'placeholder'	=> '',
-							'description'	=> 'px',
+						'er_icon_position'	=> array(
+							'type'	=> 'select',
+							'label'	=> __( 'Icon/Image Position' ,''),
+							'options'	=> array(
+								'top'	=> __( 'Top' ,''),
+								'bottom'	=> __( 'Bottom' ,''),
+								'left'	=> __( 'Left' ,''),
+								'right'	=> __( 'Right' ,''),
+							),
+							'default'	=> 'left',
 						),
+						'er_title_align'	=> array(
+							'type'	=> 'select',
+							'label'	=> __('Overall Title Align', ''),
+							'options'	=> array(
+								'center'	=> __('Center', ''),
+								'left'	=> __('Left', ''),
+								'right'	=> __('Right', '')
+							),
+							'default'	=> 'center',
+						),	
 					)
 				),
 				'er_before_click'	=> array(
@@ -216,39 +216,39 @@ function bb_er_row_extender( $form, $id ) {
 					'fields'	=> array(
 						// padding top
 						'er_padding_top'	=> array(
-                        'type'						=> 'text',
-                        'label'						=> __('Top', ''),
-                        'maxlength'					=> '3',
-                        'size'						=> '5',
-                        'placeholder'				=> '20',
-                        'description'				=> __('px',''),
+	                        'type'			=> 'text',
+	                        'label'			=> __('Top', ''),
+	                        'maxlength'		=> '3',
+	                        'size'			=> '5',
+	                        'placeholder'	=> '20',
+	                        'description'	=> __('px',''),
                     	),
                     	// padding bottom
 						'er_padding_bottom'	=> array(
-                        'type'						=> 'text',
-                        'label'						=> __('Bottom', ''),
-                        'maxlength'					=> '3',
-                        'size'						=> '5',
-                        'placeholder'				=> '20',
-                        'description'				=> __('px',''),
+	                        'type'			=> 'text',
+	                        'label'			=> __('Bottom', ''),
+	                        'maxlength'		=> '3',
+	                        'size'			=> '5',
+	                        'placeholder'	=> '20',
+	                        'description'	=> __('px',''),
                     	),
                     	// padding left
 						'er_padding_left'	=> array(
-                        'type'					=> 'text',
-                        'label'					=> __('Left', ''),
-                        'maxlength'				=> '3',
-                        'size'					=> '5',
-                        'placeholder'			=> '20',
-                        'description'			=> __('px',''),
+	                        'type'			=> 'text',
+	                        'label'			=> __('Left', ''),
+	                        'maxlength'		=> '3',
+	                        'size'			=> '5',
+	                        'placeholder'	=> '20',
+	                        'description'	=> __('px',''),
                     	),
                     	// padding right
 						'er_padding_right'	=> array(
-                        'type'						=> 'text',
-                        'label'						=> __('Right', ''),
-                        'maxlength'					=> '3',
-                        'size'						=> '5',
-                        'placeholder'				=> '20',
-                        'description'				=> __('px',''),
+	                        'type'			=> 'text',
+	                        'label'			=> __('Right', ''),
+	                        'maxlength'		=> '3',
+	                        'size'			=> '5',
+	                        'placeholder'	=> '20',
+	                        'description'	=> __('px',''),
                     	),
 					)
 				),// padding
@@ -264,8 +264,10 @@ function bb_er_row_css( $css, $nodes, $global_settings ) {
 		ob_start();
 		?>
 			<?php if ( $row->settings->is_enable == 'yes' ): ?>
-				.bber-icon-padding {
+				.fl-node-<?php echo $row->node; ?> .bber-icon {
 					padding: 0 10px;
+					font-size: ;
+    				vertical-align: middle;
 				}
 				<?php if ( ! FLBuilderModel::is_builder_active() ): ?>
 					.fl-node-<?php echo $row->node; ?> .fl-row-content-wrap {
@@ -310,19 +312,28 @@ function bb_er_row_structure ( $js, $nodes, $global_settings ) {
 		?>
 		<?php if ( $row->settings->is_enable == 'yes' ): ?>
 			(function($) {
-				var html = '<div class="bb-er-row"><div class="bb-er-title"><span><i class="bber-icon-left"></i></span><span><?php echo htmlspecialchars($row->settings->er_bc_title); ?></span><span><i class="bber-icon-right"></i></span></div></div>';
+				var html = '<div class="bb-er-row"><div class="bb-er-title-section"><span><i class="bber-icon-left"></i></span><span class="bb-er-title"><?php echo htmlspecialchars($row->settings->er_bc_title); ?></span><span><i class="bber-icon-right"></i></span></div></div>';
 				$('.fl-row.fl-node-<?php echo $row->node; ?>').prepend(html);
 
 				<?php if($row->settings->er_icon_position == 'left'): ?>
-					$('.fl-row.fl-node-<?php echo $row->node; ?> .bber-icon-left').addClass('<?php echo $row->settings->er_bc_icon; ?> bber-icon-padding');
+					$('.fl-row.fl-node-<?php echo $row->node; ?> .bber-icon-left').addClass('bber-icon <?php echo $row->settings->er_bc_icon; ?>');
 				<?php endif?>
 				<?php if($row->settings->er_icon_position == 'right'): ?>
-					$('.fl-row.fl-node-<?php echo $row->node; ?> .bber-icon-right').addClass('<?php echo $row->settings->er_bc_icon; ?> bber-icon-padding');
+					$('.fl-row.fl-node-<?php echo $row->node; ?> .bber-icon-right').addClass('bber-icon <?php echo $row->settings->er_bc_icon; ?>');
 				<?php endif?>
 
 				$('.fl-node-<?php echo $row->node; ?> .bb-er-row').click(function() {
+
 					$('.fl-node-<?php echo $row->node; ?> .fl-row-content-wrap').slideToggle();
 					$('.fl-node-<?php echo $row->node; ?> .bb-er-row').toggleClass("bber-expanded");
+					
+					// toggle title
+					( $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text() == '<?php echo htmlspecialchars($row->settings->er_bc_title); ?>' ) ? $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars($row->settings->er_ac_title); ?>') : $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars($row->settings->er_bc_title); ?>')
+
+					// toggle icon
+					<?php if( $row->settings->er_img_type == 'icon' ): ?>
+						$('.fl-node-<?php echo $row->node; ?> .bber-icon').toggleClass("<?php echo $row->settings->er_bc_icon; ?> <?php echo $row->settings->er_ac_icon; ?>")
+					<?php endif ?>
 				});
 			})(jQuery);
 		<?php endif?>
