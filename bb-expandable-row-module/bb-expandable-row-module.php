@@ -347,20 +347,20 @@ function bb_er_row_css( $css, $nodes, $global_settings ) {
 				}
 				.fl-node-<?php echo $row->node; ?> .bber-expanded {
 					color: <?php echo ($row->settings->er_ac_title_color != '') ? '#'.$row->settings->er_ac_title_color : 'inherit' ; ?>;
-					<?php if ($row->settings->er_bg_type == 'image' ): ?>
+					<?php if ($row->settings->er_bg_type == 'color' ): ?>
 						background-color: <?php echo ($row->settings->er_ac_bg_color != '') ? '#'.$row->settings->er_ac_bg_color : 'c7c7c7' ; ?>;
 					<?php endif ?>
 
 				}
 				.fl-node-<?php echo $row->node; ?> .bb-er-row:hover {
 					color: <?php echo ($row->settings->er_bc_title_hcolor != '') ? '#'.$row->settings->er_bc_title_hcolor : 'inherit' ; ?>;
-					<?php if ($row->settings->er_bg_type == 'image' ): ?>
+					<?php if ($row->settings->er_bg_type == 'color' ): ?>
 						background-color: <?php echo ($row->settings->er_bc_bg_hcolor != '') ? '#'.$row->settings->er_bc_bg_hcolor : 'inherit' ; ?>;
 					<?php endif ?>
 				}
 				.fl-node-<?php echo $row->node; ?> .bber-expanded:hover {
 					color: <?php echo ($row->settings->er_ac_title_hcolor != '') ? '#'.$row->settings->er_ac_title_hcolor : 'inherit' ; ?>;
-					<?php if ($row->settings->er_bg_type == 'image' ): ?>
+					<?php if ($row->settings->er_bg_type == 'color' ): ?>
 						background-color: <?php echo ($row->settings->er_ac_bg_hcolor != '') ? '#'.$row->settings->er_ac_bg_hcolor : 'c7c7c7' ; ?>;
 					<?php endif ?>	
 				}
