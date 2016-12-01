@@ -27,6 +27,15 @@ function bb_er_row_extender( $form, $id ) {
 				'er_general'	=> array(
 					'title'		=> __( 'Common' ,''),
 					'fields'	=> array(
+						'er_effect'		=> array(
+							'type'	=> 'select',
+							'label'	=> __('Appearing Effect', ''),
+							'options'	=> array(
+								'slide'	=> __( 'Slide' ,''),
+								'fade'	=> __( 'Fade' ,''),
+							),
+							'default'	=> 'slide'
+						),
 						'er_img_type'	=> array(
 							'type'	=> 'select',
 							'label'	=> __('Icon/Image Type', ''),
@@ -74,7 +83,7 @@ function bb_er_row_extender( $form, $id ) {
 						),
 						'er_title_align'	=> array(
 							'type'	=> 'select',
-							'label'	=> __('Overall Title Align', ''),
+							'label'	=> __('Title Alignment', ''),
 							'options'	=> array(
 								'center'	=> __('Center', ''),
 								'left'	=> __('Left', ''),
@@ -327,7 +336,12 @@ function bb_er_row_structure ( $js, $nodes, $global_settings ) {
 
 				$('.fl-node-<?php echo $row->node; ?> .bb-er-row').click(function() {
 
-					$('.fl-node-<?php echo $row->node; ?> .fl-row-content-wrap').slideToggle();
+					<?php if($row->settings->er_effect == 'slide'): ?>
+						$('.fl-node-<?php echo $row->node; ?> .fl-row-content-wrap').slideToggle();
+					<?php elseif ($row->settings->er_effect == 'fade'): ?>
+						$('.fl-node-<?php echo $row->node; ?> .fl-row-content-wrap').fadeToggle();
+					<?php endif ?>
+
 					$('.fl-node-<?php echo $row->node; ?> .bb-er-row').toggleClass("bber-expanded");
 					
 					// toggle title
