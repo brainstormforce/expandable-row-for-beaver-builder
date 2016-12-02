@@ -3,17 +3,17 @@
 function bb_er_row_extender( $form, $id ) {
 	if ( 'row' == $id ) {
 		$form['tabs']['bber_expandable'] = array(
-			'title'     => __('Expandable Row', ''),
+			'title'     => __('Expandable Row', 'bb-expandable-row'),
 			'sections'  => array(
 				'expanbable_options'	=> array(
 					'title'		=> '',
 					'fields'	=> array(
 						'is_enable'	=> array(
 							'type'	=> 'select',
-							'label'	=> __( 'Expandable Row?' ,''),
+							'label'	=> __( 'Expandable Row?' ,'bb-expandable-row'),
 							'options'	=> array(
-								'yes'	=> __( 'Yes' ,''),
-								'no'	=> __( 'No' , '')
+								'yes'	=> __( 'Yes' ,'bb-expandable-row'),
+								'no'	=> __( 'No' , 'bb-expandable-row')
 							),
 							'default'	=> 'no',
 							'toggle'	=> array(
@@ -25,24 +25,24 @@ function bb_er_row_extender( $form, $id ) {
 					)
 				),// expandable option
 				'er_general'	=> array(
-					'title'		=> __( 'Common' ,''),
+					'title'		=> __( 'Common' ,'bb-expandable-row'),
 					'fields'	=> array(
 						'er_effect'		=> array(
 							'type'	=> 'select',
-							'label'	=> __('Appearing Effect', ''),
+							'label'	=> __('Appearing Effect', 'bb-expandable-row'),
 							'options'	=> array(
-								'slide'	=> __( 'Slide' ,''),
-								'fade'	=> __( 'Fade' ,''),
+								'slide'	=> __( 'Slide' ,'bb-expandable-row'),
+								'fade'	=> __( 'Fade' ,'bb-expandable-row'),
 							),
 							'default'	=> 'slide'
 						),
 						'er_img_type'	=> array(
 							'type'	=> 'select',
-							'label'	=> __('Icon/Image Type', ''),
+							'label'	=> __('Icon/Image Type', 'bb-expandable-row'),
 							'options'	=> array(
-								'none'	=> __( 'None' ,''),
-								'icon'	=> __('Icon',''),
-								'image'	=> __('Image',''),
+								'none'	=> __( 'None' ,'bb-expandable-row'),
+								'icon'	=> __('Icon','bb-expandable-row'),
+								'image'	=> __('Image','bb-expandable-row'),
 							),
 							'default'	=> 'none',
 							'toggle'	=> array(
@@ -56,7 +56,7 @@ function bb_er_row_extender( $form, $id ) {
 						),						
 						'er_image_size'	=> array(
 							'type'	=> 'text',
-							'label'	=> __( 'Image Size' ,''),
+							'label'	=> __( 'Image Size' ,'bb-expandable-row'),
 							'maxlength'	=> '3',
 							'size'	=> '5',
 							'placeholder'	=> '',
@@ -64,29 +64,35 @@ function bb_er_row_extender( $form, $id ) {
 						),
 						'er_icon_size'	=> array(
 							'type'	=> 'text',
-							'label'	=> __( 'Icon Size' ,''),
+							'label'	=> __( 'Icon Size' ,'bb-expandable-row'),
 							'maxlength'	=> '3',
 							'size'	=> '5',
 							'placeholder'	=> '',
 							'description'	=> 'px',
+							'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bber-icon',
+                                'property'              => 'font-size',
+                                'unit'                  => 'px'
+                            )
 						),
 						'er_icon_position'	=> array(
 							'type'	=> 'select',
-							'label'	=> __( 'Icon/Image Position' ,''),
+							'label'	=> __( 'Icon/Image Position' ,'bb-expandable-row'),
 							'options'	=> array(
-								'top'	=> __( 'Top' ,''),
-								'bottom'	=> __( 'Bottom' ,''),
-								'left'	=> __( 'Left' ,''),
-								'right'	=> __( 'Right' ,''),
+								'top'	=> __( 'Top' ,'bb-expandable-row'),
+								'bottom'	=> __( 'Bottom' ,'bb-expandable-row'),
+								'left'	=> __( 'Left' ,'bb-expandable-row'),
+								'right'	=> __( 'Right' ,'bb-expandable-row'),
 							),
 							'default'	=> 'left',
 						),
 						'er_bg_type'	=> array(
 							'type'	=> 'select',
-							'label'	=> __( 'Background Type',''),
+							'label'	=> __( 'Background Type','bb-expandable-row'),
 							'options'	=> array(
-								'color'	=> __( 'Color' ,''),
-								'image'	=> __( 'Image' ,''),
+								'color'	=> __( 'Color' ,'bb-expandable-row'),
+								'image'	=> __( 'Image' ,'bb-expandable-row'),
 							),
 							'default'	=> 'color',
 							'toggle'	=> array(
@@ -100,191 +106,256 @@ function bb_er_row_extender( $form, $id ) {
 						),
 						'er_title_align'	=> array(
 							'type'	=> 'select',
-							'label'	=> __('Title Alignment', ''),
+							'label'	=> __('Title Alignment', 'bb-expandable-row'),
 							'options'	=> array(
-								'center'	=> __('Center', ''),
-								'left'	=> __('Left', ''),
-								'right'	=> __('Right', '')
+								'center'	=> __('Center', 'bb-expandable-row'),
+								'left'	=> __('Left', 'bb-expandable-row'),
+								'right'	=> __('Right', 'bb-expandable-row')
 							),
 							'default'	=> 'center',
+							'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'text-align',
+                                'unit'                  => 'px'
+                            )
 						),	
 					)
 				),
 				'er_before_click'	=> array(
-					'title'		=> __( 'Before Click' ,''),
+					'title'		=> __( 'Before Click' ,'bb-expandable-row'),
 					'fields'	=> array(
 						'er_bc_title'	=> array(
 							'type'	=> 'text',
-							'label'	=> __( 'Title' , '' ),
+							'label'	=> __( 'Title' , 'bb-expandable-row' ),
+							'preview'               => array(
+                                'type'                  => 'text',
+                                'selector'              => '.bb-er-title',
+                            )
 						),
 						'er_bc_title_color'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Title Color',''),
+							'label'	=> __( 'Title Color','bb-expandable-row'),
 							'show_reset'=> true,
+							'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'color',
+                            )
 						),
 						'er_bc_title_hcolor'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Title Hover Color',''),
+							'label'	=> __( 'Title Hover Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_bc_bg_color'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Background Color',''),
+							'label'	=> __( 'Background Color','bb-expandable-row'),
 							'show_reset'=> true,
+							'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'background-color',
+                            )
 						),
 						'er_bc_bg_hcolor'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Background Hover Color',''),
+							'label'	=> __( 'Background Hover Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_bc_icon'	=> array(
 							'type'		=> 'icon',
-							'label'		=> __('Select Icon',''),
+							'label'		=> __('Select Icon','bb-expandable-row'),
 							'show_remove'	=> true,
 						),
 						'er_bc_icon_color'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Icon Color',''),
+							'label'	=> __( 'Icon Color','bb-expandable-row'),
 							'show_reset'=> true,
+							'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bber-icon',
+                                'property'              => 'color'
+                            )
 						),
 						'er_bc_icon_hcolor'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Icon Hover Color',''),
+							'label'	=> __( 'Icon Hover Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_bc_image'	=> array(
 							'type'	=> 'photo',
-							'label'	=> __('Select Icon Image',''),
+							'label'	=> __('Select Icon Image','bb-expandable-row'),
 							'show_remove'	=> true,
 						),
 						'er_bc_bg_image'	=> array(
 							'type'	=> 'photo',
-							'label'	=> __('Select Background Image',''),
+							'label'	=> __('Select Background Image','bb-expandable-row'),
 							'show_remove'	=> true,
 						),
 					)
 				),
 				'er_after_click'	=> array(
-					'title'		=> __( 'After Click' ,''),
+					'title'		=> __( 'After Click' ,'bb-expandable-row'),
 					'fields'	=> array(
 						'er_ac_title'	=> array(
 							'type'	=> 'text',
-							'label'	=> __( 'Title' , '' ),
+							'label'	=> __( 'Title' , 'bb-expandable-row' ),
 						),
 						'er_ac_title_color'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Title Color',''),
+							'label'	=> __( 'Title Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_ac_title_hcolor'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Title Hover Color',''),
+							'label'	=> __( 'Title Hover Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_ac_bg_color'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Background Color',''),
+							'label'	=> __( 'Background Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_ac_bg_hcolor'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Background Hover Color',''),
+							'label'	=> __( 'Background Hover Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_ac_icon'	=> array(
 							'type'		=> 'icon',
-							'label'		=> __('Select Icon',''),
+							'label'		=> __('Select Icon','bb-expandable-row'),
 							'show_remove'	=> true,
 						),
 						'er_ac_icon_color'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Icon Color',''),
+							'label'	=> __( 'Icon Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_ac_icon_hcolor'	=> array(
 							'type'	=> 'color',
-							'label'	=> __( 'Icon Hover Color',''),
+							'label'	=> __( 'Icon Hover Color','bb-expandable-row'),
 							'show_reset'=> true,
 						),
 						'er_ac_image'	=> array(
 							'type'	=> 'photo',
-							'label'	=> __('Select Icon Image',''),
+							'label'	=> __('Select Icon Image','bb-expandable-row'),
 							'show_remove'	=> true,
 						),
 						'er_ac_bg_image'	=> array(
 							'type'	=> 'photo',
-							'label'	=> __('Select Background Image',''),
+							'label'	=> __('Select Background Image','bb-expandable-row'),
 							'show_remove'	=> true,
 						),
 					)
 				),
 				'er_typography'	=> array(
-					'title'	=> __('Typography',''),
+					'title'	=> __('Typography','bb-expandable-row'),
 					'fields'	=> array(
 						'er_title_typography'	=> array(
 							'type'	=> 'font',
-							'label'	=> 	__('Before/After Click ',''),
+							'label'	=> 	__('Before/After Click ','bb-expandable-row'),
 							'default'		=> array(
 		                    	'family'	=> 'Defaults',
 		                    	'weight'	=> 'Defaults'
 							),
+							'preview'		=> array(
+                            	'type'		=> 'font',
+                            	'selector'	=> '.bb-er-row'  
+                        	)
 						),
 						'er_font_size'	=> array(
 							'type'	=> 'text',
-							'label'	=> __('Font Size',''),
+							'label'	=> __('Font Size','bb-expandable-row'),
 							'maxlength'	=> '3',
 							'size'	=> '5',
 							'placeholder'	=> '28',
 							'description'	=> 'px',
+							'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'font-size',
+                                'unit'					=> 'px'
+                            )
 						),
 						'er_line_height'	=> array(
 							'type'	=> 'text',
-							'label'	=> __('Line Height',''),
+							'label'	=> __('Line Height','bb-expandable-row'),
 							'maxlength'	=> '3',
 							'size'	=> '5',
 							'placeholder'	=> '32',
 							'description'	=> 'px',
+							'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'line-height',
+                                'unit'					=> 'px'
+                            )
 						)
 					)
 				),// typography
 				'er_padding'	=> array(
-					'title'		=> __( 'Padding' ,''),
+					'title'		=> __( 'Padding' ,'bb-expandable-row'),
 					'fields'	=> array(
 						// padding top
 						'er_padding_top'	=> array(
 	                        'type'			=> 'text',
-	                        'label'			=> __('Top', ''),
+	                        'label'			=> __('Top', 'bb-expandable-row'),
 	                        'maxlength'		=> '3',
 	                        'size'			=> '5',
 	                        'placeholder'	=> '20',
-	                        'description'	=> __('px',''),
+	                        'description'	=> __('px','bb-expandable-row'),
+	                        'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'padding-top',
+                                'unit'					=> 'px'
+                            )
                     	),
                     	// padding bottom
 						'er_padding_bottom'	=> array(
 	                        'type'			=> 'text',
-	                        'label'			=> __('Bottom', ''),
+	                        'label'			=> __('Bottom', 'bb-expandable-row'),
 	                        'maxlength'		=> '3',
 	                        'size'			=> '5',
 	                        'placeholder'	=> '20',
-	                        'description'	=> __('px',''),
+	                        'description'	=> __('px','bb-expandable-row'),
+	                        'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'padding-bottom',
+                                'unit'					=> 'px'
+                            )
                     	),
                     	// padding left
 						'er_padding_left'	=> array(
 	                        'type'			=> 'text',
-	                        'label'			=> __('Left', ''),
+	                        'label'			=> __('Left', 'bb-expandable-row'),
 	                        'maxlength'		=> '3',
 	                        'size'			=> '5',
 	                        'placeholder'	=> '20',
-	                        'description'	=> __('px',''),
+	                        'description'	=> __('px','bb-expandable-row'),
+	                        'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'padding-left',
+                                'unit'					=> 'px'
+                            )
                     	),
                     	// padding right
 						'er_padding_right'	=> array(
 	                        'type'			=> 'text',
-	                        'label'			=> __('Right', ''),
+	                        'label'			=> __('Right', 'bb-expandable-row'),
 	                        'maxlength'		=> '3',
 	                        'size'			=> '5',
 	                        'placeholder'	=> '20',
-	                        'description'	=> __('px',''),
+	                        'description'	=> __('px','bb-expandable-row'),
+	                        'preview'               => array(
+                                'type'                  => 'css',
+                                'selector'              => '.bb-er-row',
+                                'property'              => 'padding-right',
+                                'unit'					=> 'px'
+                            )
                     	),
 					)
 				),// padding
@@ -382,8 +453,7 @@ function bb_er_row_structure ( $js, $nodes, $global_settings ) {
 		?>
 		<?php if ( $row->settings->is_enable == 'yes' ): ?>
 			(function($) {
-				var html = '';				 
-				 html += '<div class="bb-er-row">';
+				var html = '<div class="bb-er-row">';
 				 <?php if( $row->settings->er_icon_position == 'top' ): ?>
 				 	<?php if( $row->settings->er_img_type == 'icon' ): ?>
 				 		html += '<div><i class="bber-icon <?php echo $row->settings->er_bc_icon; ?>"></i></div>';
@@ -458,4 +528,6 @@ function bb_er_row_structure ( $js, $nodes, $global_settings ) {
 	return $js;
 }
 add_filter( 'fl_builder_render_js', 'bb_er_row_structure', 10, 3 );
+
+
 ?>
