@@ -26,7 +26,7 @@ if( !class_exists('BSFBBERRow') ) {
 
 		function load_extender() {
 			if( class_exists( 'FLBuilder' ) ) {
-				require_once 'bb-expandable-row-module/bb-expandable-row-module.php';
+				require_once 'expandable-row/expandable-row.php';
 			}
 			else {
 				add_action( 'admin_notices' , array( $this , 'admin_notices_function' ) );
@@ -42,7 +42,7 @@ if( !class_exists('BSFBBERRow') ) {
                 $url = network_admin_url() . 'plugin-install.php?s=billyyoung&tab=search&type=author';
             }
             echo '<div class="notice notice-error">';
-            echo "<p>The <strong>BB Expandable Row</strong> " . __( 'plugin requires', 'bb-expandable-row' )." <strong><a href='".$url."'>Beaver Builder</strong></a>" . __( ' plugin installed & activated.', 'bb-expandable-row' ) . "</p>";
+            echo "<p>". sprintf( __('The <strong>BB Expandable Row</strong> plugin requires. <strong><a href="%s">Beaver Builder</strong></a> plugin installed & activated' , 'bb-expandable-row'), $url ) ."</p>";
             echo '</div>';
 		}
 	}

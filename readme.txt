@@ -1,4 +1,4 @@
-=== BB Expandable Row ===
+=== Expandable Row for Beaver Builder ===
 Contributors: brainstormforce, akashd
 Donate link: https://www.brainstormforce.com/payment/
 Requires at least: 4.4
