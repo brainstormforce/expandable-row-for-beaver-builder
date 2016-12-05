@@ -390,10 +390,16 @@ add_filter( 'fl_builder_render_js', 'bb_er_row_structure', 10, 3 );
 
 function row_structure( $rows ) {
 	if( ($rows->settings->is_enable == 'yes') && FLBuilderModel::is_builder_active() ) {
-		include BB_ER_ROW_DIR . 'expandable-row/frontend-row.php';
+		include BB_ER_ROW_DIR . 'expandable-row/backend-row.php';
 	}
 }
 add_action( 'fl_builder_before_render_row_bg', 'row_structure' , 10, 1 );
 
+function backend_row_js() {
+	if( FLBuilderModel::is_builder_active() ) {
+		 wp_enqueue_script( 'backend-script' , BB_ER_ROW_URL . 'expandable-row/backend-row-js.js', true);
+	}
+}
+add_action( 'fl_builder_before_render_row_bg', 'backend_row_js' , 10);
 
 ?>

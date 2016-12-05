@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: BB Expandable Row
+ * Plugin Name: Expandable Row for Beaver Builder
  * Plugin URI: https://www.brainstormforce.com
  * Description: Expandable Row for Beaver Builder
  * Version: 1.0
