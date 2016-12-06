@@ -69,12 +69,6 @@ function bb_er_row_extender( $form, $id ) {
 							'size'	=> '5',
 							'placeholder'	=> '',
 							'description'	=> 'px',
-							'preview'               => array(
-                                'type'                  => 'css',
-                                'selector'              => '.bber-icon',
-                                'property'              => 'font-size',
-                                'unit'                  => 'px'
-                            )
 						),
 						'er_icon_position'	=> array(
 							'type'	=> 'select',
@@ -113,12 +107,6 @@ function bb_er_row_extender( $form, $id ) {
 								'right'	=> __('Right', 'bb-expandable-row')
 							),
 							'default'	=> 'center',
-							'preview'               => array(
-                                'type'                  => 'css',
-                                'selector'              => '.bb-er-row',
-                                'property'              => 'text-align',
-                                'unit'                  => 'px'
-                            )
 						),	
 					)
 				),
@@ -271,12 +259,6 @@ function bb_er_row_extender( $form, $id ) {
 							'size'	=> '5',
 							'placeholder'	=> '28',
 							'description'	=> 'px',
-							'preview'               => array(
-                                'type'                  => 'css',
-                                'selector'              => '.bb-er-row',
-                                'property'              => 'font-size',
-                                'unit'					=> 'px'
-                            )
 						),
 						'er_line_height'	=> array(
 							'type'	=> 'text',
@@ -285,12 +267,6 @@ function bb_er_row_extender( $form, $id ) {
 							'size'	=> '5',
 							'placeholder'	=> '32',
 							'description'	=> 'px',
-							'preview'               => array(
-                                'type'                  => 'css',
-                                'selector'              => '.bb-er-row',
-                                'property'              => 'line-height',
-                                'unit'					=> 'px'
-                            )
 						)
 					)
 				),// typography
@@ -305,12 +281,6 @@ function bb_er_row_extender( $form, $id ) {
 	                        'size'			=> '5',
 	                        'placeholder'	=> '20',
 	                        'description'	=> __('px','bb-expandable-row'),
-	                        'preview'               => array(
-                                'type'                  => 'css',
-                                'selector'              => '.bb-er-row',
-                                'property'              => 'padding-top',
-                                'unit'					=> 'px'
-                            )
                     	),
                     	// padding bottom
 						'er_padding_bottom'	=> array(
@@ -320,12 +290,6 @@ function bb_er_row_extender( $form, $id ) {
 	                        'size'			=> '5',
 	                        'placeholder'	=> '20',
 	                        'description'	=> __('px','bb-expandable-row'),
-	                        'preview'               => array(
-                                'type'                  => 'css',
-                                'selector'              => '.bb-er-row',
-                                'property'              => 'padding-bottom',
-                                'unit'					=> 'px'
-                            )
                     	),
                     	// padding left
 						'er_padding_left'	=> array(
@@ -335,12 +299,6 @@ function bb_er_row_extender( $form, $id ) {
 	                        'size'			=> '5',
 	                        'placeholder'	=> '20',
 	                        'description'	=> __('px','bb-expandable-row'),
-	                        'preview'               => array(
-                                'type'                  => 'css',
-                                'selector'              => '.bb-er-row',
-                                'property'              => 'padding-left',
-                                'unit'					=> 'px'
-                            )
                     	),
                     	// padding right
 						'er_padding_right'	=> array(
@@ -350,12 +308,6 @@ function bb_er_row_extender( $form, $id ) {
 	                        'size'			=> '5',
 	                        'placeholder'	=> '20',
 	                        'description'	=> __('px','bb-expandable-row'),
-	                        'preview'               => array(
-                                'type'                  => 'css',
-                                'selector'              => '.bb-er-row',
-                                'property'              => 'padding-right',
-                                'unit'					=> 'px'
-                            )
                     	),
 					)
 				),// padding
