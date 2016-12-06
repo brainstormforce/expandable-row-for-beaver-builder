@@ -38,7 +38,7 @@
 	$('.fl-row.fl-node-<?php echo $row->node; ?>').prepend(html);
 	<?php endif ?>
 
-<?php if ( ! FLBuilderModel::is_builder_active() ): ?>
+
 	$('.fl-node-<?php echo $row->node; ?> .bb-er-row').click(function() {
 
 		<?php if($row->settings->er_effect == 'slide'): ?>
@@ -70,6 +70,6 @@
 		<?php endif ?>
 
 	});
-<?php endif ?>
+
 })(jQuery);
 <?php endif?>
