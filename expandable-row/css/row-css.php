@@ -6,11 +6,6 @@
 		font-size: <?php echo ($row->settings->er_icon_size != '' )? $row->settings->er_icon_size.'px' : 'inherit' ?>;
 		vertical-align: middle;
 		padding: 0 10px;
-		-webkit-transition: all 0.3s ease-out;
-		-moz-transition: all 0.3s ease-out;
-		-ms-transition: all 0.3s ease-out;
-		-o-transition: all 0.3s ease-out;
-		transition: all 0.3s ease-out;
 	}
 
 	/* Image Padding */
@@ -30,6 +25,7 @@
 	/* Expandable Row */
 	.fl-node-<?php echo $row->node; ?> .bb-er-row {
 		width:100%;
+		cursor: pointer;
 		color: #<?php echo ($row->settings->er_bc_title_color != '') ? $row->settings->er_bc_title_color : '000' ; ?>;
 		<?php if( $row->settings->er_bg_type == 'color'): ?>
 			background-color:#<?php echo ($row->settings->er_bc_bg_color != '') ? $row->settings->er_bc_bg_color : 'c7c7c7' ; ?>;

@@ -349,7 +349,7 @@ add_action( 'fl_builder_before_render_row_bg', 'row_structure' , 10, 1 );
 
 function backend_row_js() {
 	if( FLBuilderModel::is_builder_active() ) {
-		 wp_enqueue_script( 'backend-script' , BB_ER_ROW_URL . 'expandable-row/backend-row-js.js', true);
+		 wp_enqueue_script( 'backend-script' , BB_ER_ROW_URL . 'expandable-row/js/backend-row-js.js', true);
 	}
 }
 add_action( 'fl_builder_before_render_row_bg', 'backend_row_js' , 10);
