@@ -75,6 +75,7 @@
 
 	/* Image icon size */
 	.fl-node-<?php echo $row->node; ?> .bber-image img {
+		vertical-align: middle;
 		width: <?php echo ( $row->settings->er_image_size != '' ) ? $row->settings->er_image_size : 'auto' ?>px;
 	}
 <?php endif ?>
