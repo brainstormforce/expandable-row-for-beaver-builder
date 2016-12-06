@@ -12,7 +12,7 @@ Simple Expandable Row for Beaver Builder.
 
 == Description ==
 
-Simple Expandable Row for Beaver Builder.
+Simple Expandable Row for Beaver Builder. This plugin toggles any row in Beaver Builder.
 
 == Installation ==
 
@@ -22,7 +22,7 @@ Simple Expandable Row for Beaver Builder.
 
 3. Activate the plugin through the 'Plugins' screen in WordPress
 
-4. Find this module in `Page Builder` -> `Add Content` -> `Advance Modules` -> `BB Expandable Row`
+4. Find this plugin option in `Row Settings` of `Page Builder` in `Expandable Row` tab.
 
 == Changelog ==
 

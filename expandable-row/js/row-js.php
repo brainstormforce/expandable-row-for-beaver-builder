@@ -1,5 +1,6 @@
 <?php if ( $row->settings->is_enable == 'yes' ): ?>
 (function($) {
+
 	<?php if( ! FLBuilderModel::is_builder_active()): ?>
 	var html = '<div class="bb-er-row">';
 	 <?php if( $row->settings->er_icon_position == 'top' ): ?>
@@ -34,7 +35,7 @@
 	 <?php endif ?>
 	<?php endif ?>
 	 html += '</div>';
-
+	 console.log(html);
 	$('.fl-row.fl-node-<?php echo $row->node; ?>').prepend(html);
 	<?php endif ?>
 
