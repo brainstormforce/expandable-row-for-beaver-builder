@@ -319,6 +319,8 @@ function bb_er_row_extender( $form, $id ) {
 add_filter( 'fl_builder_register_settings_form', 'bb_er_row_extender', 10, 2 );
 
 function bb_er_row_css( $css, $nodes, $global_settings ) {
+	wp_enqueue_style('foundation_icon', BB_ER_ROW_URL . 'expandable-row/fonts/foundation-icons/foundation-icons.css', array() );
+	wp_enqueue_style('font_awesome_icon', BB_ER_ROW_URL . 'expandable-row/fonts/font-awesome/css/font-awesome.min.css', array() );
 	foreach ( $nodes['rows'] as $row ) {
 		ob_start();
 			include BB_ER_ROW_DIR . 'expandable-row/css/row-css.php';
@@ -330,6 +332,7 @@ function bb_er_row_css( $css, $nodes, $global_settings ) {
 add_filter( 'fl_builder_render_css', 'bb_er_row_css', 10, 3 );
 
 function bb_er_row_structure ( $js, $nodes, $global_settings ) {
+
 	foreach ( $nodes['rows'] as $row ) {
 		ob_start();
 			include BB_ER_ROW_DIR . 'expandable-row/js/row-js.php';

@@ -35,7 +35,6 @@
 	 <?php endif ?>
 	<?php endif ?>
 	 html += '</div>';
-	 console.log(html);
 	$('.fl-row.fl-node-<?php echo $row->node; ?>').prepend(html);
 	<?php endif ?>
 
@@ -51,11 +50,11 @@
 		$('.fl-node-<?php echo $row->node; ?> .bb-er-row').toggleClass("bber-expanded");
 		
 		// toggle title
-		( $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text() == '<?php echo htmlspecialchars($row->settings->er_bc_title); ?>' ) ? $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars($row->settings->er_ac_title); ?>') : $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars($row->settings->er_bc_title); ?>')
+		( $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text() == '<?php echo htmlspecialchars($row->settings->er_bc_title); ?>' ) ? $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars($row->settings->er_ac_title); ?>') : $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars($row->settings->er_bc_title); ?>');
 
 		// toggle icon
 		<?php if( $row->settings->er_img_type == 'icon' ): ?>
-			$('.fl-node-<?php echo $row->node; ?> .bber-icon').toggleClass("<?php echo $row->settings->er_bc_icon; ?> <?php echo $row->settings->er_ac_icon; ?>")
+			$('.fl-node-<?php echo $row->node; ?> .bber-icon').toggleClass("<?php echo $row->settings->er_bc_icon; ?> <?php echo $row->settings->er_ac_icon; ?>");
 		<?php endif ?>
 
 		// toggle background
@@ -69,6 +68,11 @@
 			var img_toggle_src = ( $('.fl-node-<?php echo $row->node; ?> .bber-image img').attr('src') == '<?php echo $row->settings->er_bc_image_src; ?>' ? '<?php echo $row->settings->er_ac_image_src; ?>' : '<?php echo $row->settings->er_bc_image_src; ?>' );
 			$('.fl-node-<?php echo $row->node; ?> .bber-image img').attr('src', img_toggle_src)
 		<?php endif ?>
+
+		// dashicon padding
+		if( $('.fl-node-<?php echo $row->node; ?> .bber-icon').hasClass('dashicons')) {
+			$('.fl-node-<?php echo $row->node; ?> .bb-er-title').css('padding','0 15px');
+		}
 
 	});
 
