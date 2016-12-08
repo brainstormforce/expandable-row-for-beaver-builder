@@ -69,11 +69,6 @@
 			$('.fl-node-<?php echo $row->node; ?> .bber-image img').attr('src', img_toggle_src)
 		<?php endif ?>
 
-		// dashicon padding
-		if( $('.fl-node-<?php echo $row->node; ?> .bber-icon').hasClass('dashicons')) {
-			$('.fl-node-<?php echo $row->node; ?> .bb-er-title').css('padding','0 15px');
-		}
-
 	});
 
 })(jQuery);

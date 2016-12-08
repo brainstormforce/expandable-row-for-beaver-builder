@@ -80,4 +80,13 @@
 		vertical-align: middle;
 		width: <?php echo ( $row->settings->er_image_size != '' ) ? $row->settings->er_image_size : 'auto' ?>px;
 	}
+
+	/* Dashicons alignment */
+	.fl-node-<?php echo $row->node; ?> .dashicons,
+	.fl-node-<?php echo $row->node; ?> .dashicons-before:before {
+		width: auto;
+    	height: auto;
+    	font-size: <?php echo ($row->settings->er_icon_size != '' )? $row->settings->er_icon_size.'px' : 'inherit' ?>;
+	}
+
 <?php endif ?>
