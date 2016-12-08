@@ -2,11 +2,13 @@
 (function($) {
 
 	<?php if( ! FLBuilderModel::is_builder_active()): ?>
+
+	// generating html structure
 	var html = '<div class="bb-er-row">';
-	 <?php if( $row->settings->er_icon_position == 'top' ): ?>
-	 	<?php if( $row->settings->er_img_type == 'icon' ): ?>
-	 		html += '<div><i class="bber-icon <?php echo $row->settings->er_bc_icon; ?>"></i></div>';
-	 	<?php elseif( $row->settings->er_img_type == 'image' ): ?>
+	<?php if( $row->settings->er_icon_position == 'top' ): ?>
+		<?php if( $row->settings->er_img_type == 'icon' ): ?>
+			html += '<div><i class="bber-icon <?php echo $row->settings->er_bc_icon; ?>"></i></div>';
+		<?php elseif( $row->settings->er_img_type == 'image' ): ?>
 	 		html += '<div class="bber-image"><img src="<?php echo $row->settings->er_bc_image_src; ?>" /></div>';
 	 <?php endif ?>
 	<?php endif ?>
@@ -35,18 +37,22 @@
 	 <?php endif ?>
 	<?php endif ?>
 	 html += '</div>';
+
+	// appending html structure on respective row
 	$('.fl-row.fl-node-<?php echo $row->node; ?>').prepend(html);
 	<?php endif ?>
 
-
+	// after click on row
 	$('.fl-node-<?php echo $row->node; ?> .bb-er-row').click(function() {
 
+		// appear effect
 		<?php if($row->settings->er_effect == 'slide'): ?>
 			$('.fl-node-<?php echo $row->node; ?> .fl-row-content-wrap').slideToggle();
 		<?php elseif ($row->settings->er_effect == 'fade'): ?>
 			$('.fl-node-<?php echo $row->node; ?> .fl-row-content-wrap').fadeToggle();
 		<?php endif ?>
 
+		// toggle class
 		$('.fl-node-<?php echo $row->node; ?> .bb-er-row').toggleClass("bber-expanded");
 		
 		// toggle title

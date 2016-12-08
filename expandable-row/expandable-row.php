@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Extending row setting
+*/
 function bb_er_row_extender( $form, $id ) {
 	if ( 'row' == $id ) {
 		$form['tabs']['bber_expandable'] = array(
@@ -29,7 +31,7 @@ function bb_er_row_extender( $form, $id ) {
 					'fields'	=> array(
 						'er_effect'		=> array(
 							'type'	=> 'select',
-							'label'	=> __('Appearing Effect', 'bb-expandable-row'),
+							'label'	=> __('Appear Animation/ Effect', 'bb-expandable-row'),
 							'options'	=> array(
 								'slide'	=> __( 'Slide' ,'bb-expandable-row'),
 								'fade'	=> __( 'Fade' ,'bb-expandable-row'),
@@ -318,6 +320,9 @@ function bb_er_row_extender( $form, $id ) {
 }
 add_filter( 'fl_builder_register_settings_form', 'bb_er_row_extender', 10, 2 );
 
+/*
+ * CSS for Expandable Row
+*/
 function bb_er_row_css( $css, $nodes, $global_settings ) {
 	wp_enqueue_style('foundation_icon', BB_ER_ROW_URL . 'expandable-row/fonts/foundation-icons/foundation-icons.css', array() );
 	wp_enqueue_style('font_awesome_icon', BB_ER_ROW_URL . 'expandable-row/fonts/font-awesome/css/font-awesome.min.css', array() );
@@ -331,6 +336,9 @@ function bb_er_row_css( $css, $nodes, $global_settings ) {
 }
 add_filter( 'fl_builder_render_css', 'bb_er_row_css', 10, 3 );
 
+/*
+ * jQuery and frontend structure for Expandable Row
+*/
 function bb_er_row_structure ( $js, $nodes, $global_settings ) {
 
 	foreach ( $nodes['rows'] as $row ) {
@@ -342,7 +350,9 @@ function bb_er_row_structure ( $js, $nodes, $global_settings ) {
 }
 add_filter( 'fl_builder_render_js', 'bb_er_row_structure', 10, 3 );
 
-
+/*
+ * Row structure when page builder is active
+*/
 function row_structure( $rows ) {
 	if( ($rows->settings->is_enable == 'yes') && FLBuilderModel::is_builder_active() ) {
 		include BB_ER_ROW_DIR . 'expandable-row/backend-row.php';
@@ -350,6 +360,9 @@ function row_structure( $rows ) {
 }
 add_action( 'fl_builder_before_render_row_bg', 'row_structure' , 10, 1 );
 
+/*
+ * jQuery for Expandable row when page builder is active
+*/
 function backend_row_js() {
 	if( FLBuilderModel::is_builder_active() ) {
 		 wp_enqueue_script( 'backend-script' , BB_ER_ROW_URL . 'expandable-row/js/backend-row-js.js', true);

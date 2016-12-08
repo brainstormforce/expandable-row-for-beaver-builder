@@ -34,7 +34,7 @@
 		<?php endif ?>
 		<?php if($row->settings->er_title_typography['family'] != 'Default'):?>
 		font-family: <?php echo ($row->settings->er_title_typography['family'] != 'Default')? $row->settings->er_title_typography['family'] : 'inherit' ?>;
-		font-weight: <?php echo ($row->settings->er_title_typography['weight'] != 'default' ) ? $row->settings->er_title_typography['weight'] : '500' ; ?>;
+		font-weight: <?php echo ($row->settings->er_title_typography['weight'] != 'default' || $row->settings->er_title_typography['weight'] != 'regular' ) ? $row->settings->er_title_typography['weight'] : '500' ; ?>;
 		<?php endif ?>
 		font-size: <?php echo ($row->settings->er_font_size != '' ) ? $row->settings->er_font_size : '28' ; ?>px;
 		line-height: <?php echo ($row->settings->er_line_height != '' ) ? $row->settings->er_line_height : '32' ; ?>px;
