@@ -7,6 +7,9 @@
 		vertical-align: middle;
 		padding: 0 10px;
 	}
+	.fl-node-<?php echo $row->node; ?> .bber-expanded .bber-icon {
+		color: <?php echo ($row->settings->er_ac_icon_color != '' )? '#'.$row->settings->er_ac_icon_color : 'inherit' ?>;
+	}
 
 	/* Image Padding */
 	.fl-node-<?php echo $row->node; ?> .bber-image {
@@ -14,6 +17,9 @@
 	}
 	.fl-node-<?php echo $row->node; ?> .bb-er-row:hover .bber-icon {
 		color: <?php echo ($row->settings->er_bc_icon_hcolor != '' )? '#'.$row->settings->er_bc_icon_hcolor : 'inherit' ?>;
+	}
+	.fl-node-<?php echo $row->node; ?> .bber-expanded:hover .bber-icon {
+		color: <?php echo ($row->settings->er_ac_icon_hcolor != '' )? '#'.$row->settings->er_ac_icon_hcolor : 'inherit' ?>;
 	}
 
 	<?php if ( ! FLBuilderModel::is_builder_active() ): ?>
@@ -54,7 +60,7 @@
 	.fl-node-<?php echo $row->node; ?> .bber-expanded {
 		color: <?php echo ($row->settings->er_ac_title_color != '') ? '#'.$row->settings->er_ac_title_color : 'inherit' ; ?>;
 		<?php if ($row->settings->er_bg_type == 'color' ): ?>
-			background-color: <?php echo ($row->settings->er_ac_bg_color != '') ? '#'.$row->settings->er_ac_bg_color : 'c7c7c7' ; ?>;
+			background-color: <?php echo ($row->settings->er_ac_bg_color != '') ? '#'.$row->settings->er_ac_bg_color : '#c7c7c7' ; ?>;
 		<?php endif ?>
 
 	}
@@ -71,7 +77,7 @@
 	.fl-node-<?php echo $row->node; ?> .bber-expanded:hover {
 		color: <?php echo ($row->settings->er_ac_title_hcolor != '') ? '#'.$row->settings->er_ac_title_hcolor : 'inherit' ; ?>;
 		<?php if ($row->settings->er_bg_type == 'color' ): ?>
-			background-color: <?php echo ($row->settings->er_ac_bg_hcolor != '') ? '#'.$row->settings->er_ac_bg_hcolor : 'c7c7c7' ; ?>;
+			background-color: <?php echo ($row->settings->er_ac_bg_hcolor != '') ? '#'.$row->settings->er_ac_bg_hcolor : '#c7c7c7' ; ?>;
 		<?php endif ?>	
 	}
 
