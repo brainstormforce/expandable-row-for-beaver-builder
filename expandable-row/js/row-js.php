@@ -65,13 +65,13 @@
 
 		// toggle background
 		<?php if ($row->settings->er_bg_type == 'image' ): ?>
-			var bg_toggle_src = ( $('.fl-node-<?php echo $row->node; ?> .bb-er-row').css('background-image') == 'url("<?php echo $row->settings->er_bc_bg_image_src; ?>")' ? 'url("<?php echo $row->settings->er_ac_bg_image_src; ?>")' : 'url("<?php echo $row->settings->er_bc_bg_image_src; ?>")' );
+			var bg_toggle_src = ( $('.fl-node-<?php echo $row->node; ?> .bb-er-row').css('background-image') == 'url("<?php echo isset($row->settings->er_bc_bg_image_src)? $row->settings->er_bc_bg_image_src : null ; ?>")' ? 'url("<?php echo isset($row->settings->er_ac_bg_image_src)? $row->settings->er_ac_bg_image_src : null ; ?>")' : 'url("<?php echo isset($row->settings->er_bc_bg_image_src)? $row->settings->er_bc_bg_image_src : null ; ?>")' );
 			$('.fl-node-<?php echo $row->node; ?> .bb-er-row').css({'background-image' : bg_toggle_src });
 		<?php endif ?>
 
 		// toggle image icon
 		<?php if( $row->settings->er_img_type == 'image' ): ?>
-			var img_toggle_src = ( $('.fl-node-<?php echo $row->node; ?> .bber-image img').attr('src') == '<?php echo $row->settings->er_bc_image_src; ?>' ? '<?php echo $row->settings->er_ac_image_src; ?>' : '<?php echo $row->settings->er_bc_image_src; ?>' );
+			var img_toggle_src = ( $('.fl-node-<?php echo $row->node; ?> .bber-image img').attr('src') == '<?php echo isset($row->settings->er_bc_image_src)? $row->settings->er_bc_image_src : null ; ?>' ? '<?php echo isset($row->settings->er_ac_image_src)? $row->settings->er_ac_image_src : null ; ?>' : '<?php echo isset($row->settings->er_bc_image_src)? $row->settings->er_bc_image_src : null ; ?>' );
 			$('.fl-node-<?php echo $row->node; ?> .bber-image img').attr('src', img_toggle_src)
 		<?php endif ?>
 

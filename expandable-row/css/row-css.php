@@ -36,7 +36,7 @@
 		<?php if( $row->settings->er_bg_type == 'color'): ?>
 			background-color:#<?php echo ($row->settings->er_bc_bg_color != '') ? $row->settings->er_bc_bg_color : 'c7c7c7' ; ?>;
 		<?php elseif ($row->settings->er_bg_type == 'image' ): ?>
-			background-image: url(<?php echo $row->settings->er_bc_bg_image_src; ?>);
+			background-image: url(<?php echo isset($row->settings->er_bc_bg_image_src)? $row->settings->er_bc_bg_image_src : null ; ?>);
 		<?php endif ?>
 		<?php if($row->settings->er_title_typography['family'] != 'Default'):?>
 		font-family: <?php echo ($row->settings->er_title_typography['family'] != 'Default')? $row->settings->er_title_typography['family'] : 'inherit' ?>;
@@ -61,6 +61,8 @@
 		color: <?php echo ($row->settings->er_ac_title_color != '') ? '#'.$row->settings->er_ac_title_color : 'inherit' ; ?>;
 		<?php if ($row->settings->er_bg_type == 'color' ): ?>
 			background-color: <?php echo ($row->settings->er_ac_bg_color != '') ? '#'.$row->settings->er_ac_bg_color : '#c7c7c7' ; ?>;
+		<?php elseif ($row->settings->er_bg_type == 'image' ): ?>
+			background-image: url(<?php echo isset($row->settings->er_ac_bg_image_src)? $row->settings->er_ac_bg_image_src : null ; ?>);
 		<?php endif ?>
 
 	}
