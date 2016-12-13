@@ -361,7 +361,6 @@ function bb_er_row_css( $css, $nodes, $global_settings ) {
 	if ( in_array( 'font-awesome' , $enable_icons ) ) {
 		wp_enqueue_style( 'font_awesome_icon', BB_ER_ROW_URL . 'expandable-row/fonts/font-awesome/css/font-awesome.min.css', array() );
 	}
-	die();
 	foreach ( $nodes['rows'] as $row ) {
 		ob_start();
 		include BB_ER_ROW_DIR . 'expandable-row/css/row-css.php';

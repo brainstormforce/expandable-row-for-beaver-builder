@@ -6,6 +6,11 @@
 		font-size: <?php echo ($row->settings->er_icon_size != '' )? $row->settings->er_icon_size.'px' : 'inherit' ?>;
 		vertical-align: middle;
 		padding: 0 10px;
+		-webkit-transition: all 0.3s ease-out;
+		-moz-transition: all 0.3s ease-out;
+		-ms-transition: all 0.3s ease-out;
+		-o-transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out;
 	}
 	.fl-node-<?php echo $row->node; ?> .bber-expanded .bber-icon {
 		color: <?php echo ($row->settings->er_ac_icon_color != '' )? '#'.$row->settings->er_ac_icon_color : 'inherit' ?>;
