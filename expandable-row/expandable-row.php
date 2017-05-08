@@ -146,7 +146,8 @@ function bb_er_row_extender( $form, $id ) {
 							'preview' => array(
 								'type'     => 'text',
 								'selector' => '.bb-er-title',
-							)
+							),
+							'connections'   => array( 'string', 'html' )
 						),
 						'er_bc_title_color'  => array(
 							'type'       => 'color',
@@ -216,6 +217,7 @@ function bb_er_row_extender( $form, $id ) {
 						'er_ac_title'        => array(
 							'type'  => 'text',
 							'label' => __( 'Title', 'bb-expandable-row' ),
+							'connections'   => array( 'string', 'html' )
 						),
 						'er_ac_title_color'  => array(
 							'type'       => 'color',
