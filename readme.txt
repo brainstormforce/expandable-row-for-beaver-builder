@@ -1,6 +1,6 @@
 === Expandable Row for Beaver Builder ===
 Contributors: brainstormforce
-Donate link: https://www.brainstormforce.com/payment/
+Donate link: https://www.paypal.me/BrainstormForce
 Requires at least: 4.4
 Tags: beaver builder, page builder plugin, expandable, expand, row expand, row
 Stable tag: 1.1.0
