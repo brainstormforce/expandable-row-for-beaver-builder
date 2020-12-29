@@ -31,3 +31,21 @@ Simple Expandable Row for Beaver Builder. This plugin toggles any row in Beaver 
 
 = 1.0.0 =
 - Initial release
+
+== Credits ==
+
+= Font Awesome =
+Icons library - https://fontawesome.com/
+Licensed under MIT & GPL - https://fontawesome.com/license/free
+
+= Foundation Icons =
+Icons library - https://zurb.com/playground/foundation-icon-fonts-3
+
+== Credits ==
+
+= Font Awesome =
+Icons library - https://fontawesome.com/
+Licensed under MIT & GPL - https://fontawesome.com/license/free
+
+= Foundation Icons =
+Icons library - https://zurb.com/playground/foundation-icon-fonts-3
