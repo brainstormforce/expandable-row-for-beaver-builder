@@ -43,9 +43,5 @@ Icons library - https://zurb.com/playground/foundation-icon-fonts-3
 
 == Credits ==
 
-= Font Awesome =
-Icons library - https://fontawesome.com/
-Licensed under MIT & GPL - https://fontawesome.com/license/free
-
-= Foundation Icons =
-Icons library - https://zurb.com/playground/foundation-icon-fonts-3
+- [Font Awesome](https://fontawesome.com/) is distributed under the terms of the MIT and GNU General Public License.
+- [Foundation Icons](https://zurb.com/playground/foundation-icon-fonts-3)
