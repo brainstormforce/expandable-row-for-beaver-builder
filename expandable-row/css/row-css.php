@@ -43,9 +43,9 @@
 		<?php elseif ($row->settings->er_bg_type == 'image' ): ?>
 			background-image: url(<?php echo isset($row->settings->er_bc_bg_image_src)? $row->settings->er_bc_bg_image_src : null ; ?>);
 		<?php endif ?>
-		<?php if($row->settings->er_title_typography['family'] != 'Default'):?>
-		font-family: <?php echo ($row->settings->er_title_typography['family'] != 'Default')? $row->settings->er_title_typography['family'] : 'inherit' ?>;
-		font-weight: <?php echo ($row->settings->er_title_typography['weight'] != 'default' || $row->settings->er_title_typography['weight'] != 'regular' ) ? $row->settings->er_title_typography['weight'] : '500' ; ?>;
+		<?php if( is_array($row->settings->er_title_typography) && $row->settings->er_title_typography['family'] != 'Default' ):?>
+		font-family: <?php echo ( is_array($row->settings->er_title_typography) && $row->settings->er_title_typography['family'] != 'Default' ) ? $row->settings->er_title_typography['family'] : 'inherit' ?>;
+		font-weight: <?php echo ( is_array($row->settings->er_title_typography) && $row->settings->er_title_typography['weight'] != 'default' || $row->settings->er_title_typography['weight'] != 'regular' ) ? $row->settings->er_title_typography['weight'] : '500' ; ?>;
 		<?php endif ?>
 		font-size: <?php echo ($row->settings->er_font_size != '' ) ? $row->settings->er_font_size : '28' ; ?>px;
 		line-height: <?php echo ($row->settings->er_line_height != '' ) ? $row->settings->er_line_height : '32' ; ?>px;

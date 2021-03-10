@@ -31,6 +31,9 @@ if ( ! class_exists( 'BSFBBERRow' ) ) {
 				add_action( 'admin_notices', array( $this, 'admin_notices_function' ) );
 				add_action( 'network_admin_notices', array( $this, 'admin_notices_function' ) );
 			}
+			if ( class_exists( 'FLBuilder' ) && class_exists( 'BB_Ultimate_Addon' ) ) {
+				add_action( 'wp_enqueue_scripts', array( $this, 'load_uabb_icons' ) );
+			}
 		}
 
 		function admin_notices_function() {
@@ -44,6 +47,10 @@ if ( ! class_exists( 'BSFBBERRow' ) ) {
 			echo '<div class="notice notice-error">';
 			echo "<p>" . sprintf( __( 'The <strong>BB Expandable Row</strong> plugin requires. <strong><a href="%s">Beaver Builder</strong></a> plugin installed & activated', 'bb-expandable-row' ), $url ) . "</p>";
 			echo '</div>';
+		}
+
+		function load_uabb_icons() {
+			wp_enqueue_style( 'ultimate-icons', BB_ULTIMATE_ADDON_URL . 'includes/icons/ultimate-icons/style.css' );
 		}
 	}
 
