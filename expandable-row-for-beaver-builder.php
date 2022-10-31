@@ -3,9 +3,9 @@
  * Plugin Name: Expandable Row for Beaver Builder
  * Plugin URI: https://www.brainstormforce.com
  * Description: Toggle any row with this plugin in Beaver Builder
- * Version: 1.1.1
- * Author: Brainstorm Force
- * Author URI: https://www.brainstormforce.com
+ * Version: 1.1.2
+ * Author: Pratik Chaskar
+ * Author URI: https://pratikchaskar.com
  * License: GNU General Public License v3.0
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: bb-expandable-row
