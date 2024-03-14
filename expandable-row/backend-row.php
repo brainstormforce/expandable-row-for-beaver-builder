@@ -27,7 +27,7 @@
 		<?php endif ?>
 
 		<span class="bb-er-title">
-			<?php echo htmlspecialchars($rows->settings->er_bc_title); ?>
+			<?php echo htmlspecialchars( $rows->settings->er_bc_title ); ?>
 		</span>
 
 		<?php if( $rows->settings->er_icon_position == 'right' ): ?>
