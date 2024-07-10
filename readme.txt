@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/BrainstormForce
 Requires at least: 4.4
 Tags: beaver builder, page builder plugin, expandable, expand, row expand, row
 Stable tag: 1.1.3
-Tested up to: 6.5
+Tested up to: 6.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 

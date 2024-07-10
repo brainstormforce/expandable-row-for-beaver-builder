@@ -4,8 +4,8 @@
  * Plugin URI: https://www.brainstormforce.com
  * Description: Toggle any row with this plugin in Beaver Builder
  * Version: 1.1.3
- * Author: Pratik Chaskar
- * Author URI: https://pratikchaskar.com
+ * Author: Brainstorm Force, Pratik Chaskar
+ * Author URI: https://brainstormforce.com/
  * License: GNU General Public License v3.0
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: bb-expandable-row
