@@ -3,7 +3,7 @@ Contributors: pratikchaskar
 Donate link: https://www.paypal.me/BrainstormForce
 Requires at least: 4.4
 Tags: beaver builder, page builder plugin, expandable, expand, row expand, row
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 Tested up to: 6.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -25,6 +25,9 @@ Simple Expandable Row for Beaver Builder. This plugin toggles any row in Beaver 
 4. Find this plugin option in `Row Settings` of `Page Builder` in `Expandable Row` tab.
 
 == Changelog ==
+
+= 1.1.3 =
+- Improvement: Improved codebase for improved security.
 
 = 1.1.2 =
 - Improvement: Added compatibility to WordPress 6.1
