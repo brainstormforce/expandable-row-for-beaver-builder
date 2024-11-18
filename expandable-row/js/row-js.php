@@ -20,7 +20,7 @@
 	 		html += '<span class="bber-image"><img src="<?php echo $row->settings->er_bc_image_src; ?>" /></span>';
 	 <?php endif ?>
 	<?php endif ?>
-	 html += '<span class="bb-er-title"><?php echo htmlspecialchars($row->settings->er_bc_title); ?></span>';
+	 html += '<span class="bb-er-title"><?php echo htmlspecialchars(addslashes($row->settings->er_bc_title)); ?></span>';
 	<?php if( $row->settings->er_icon_position == 'right' ): ?>
 	 	<?php if( $row->settings->er_img_type == 'icon' ): ?>
 	 		html += '<span><i class="bber-icon <?php echo $row->settings->er_bc_icon; ?>"></i></span>';
@@ -56,7 +56,7 @@
 		$('.fl-node-<?php echo $row->node; ?> .bb-er-row').toggleClass("bber-expanded");
 		
 		// toggle title
-		( $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text() == '<?php echo htmlspecialchars($row->settings->er_bc_title); ?>' ) ? $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars($row->settings->er_ac_title); ?>') : $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars($row->settings->er_bc_title); ?>');
+		( $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text() == '<?php echo htmlspecialchars(addslashes($row->settings->er_bc_title)); ?>' ) ? $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars(addslashes($row->settings->er_ac_title)); ?>') : $('.fl-node-<?php echo $row->node; ?>  .bb-er-title').text('<?php echo htmlspecialchars(addslashes($row->settings->er_bc_title)); ?>');
 
 		// toggle icon
 		<?php if( $row->settings->er_img_type == 'icon' ): ?>
