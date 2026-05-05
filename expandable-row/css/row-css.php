@@ -1,8 +1,22 @@
+<?php
+if ( ! function_exists( 'bber_format_color' ) ) {
+	function bber_format_color( $color, $fallback = 'inherit' ) {
+		if ( $color === '' || $color === null ) {
+			return $fallback;
+		}
+		// If already has a recognized prefix, output as-is
+		if ( $color[0] === '#' || 0 === strncasecmp( $color, 'rgb', 3 ) || 0 === strncasecmp( $color, 'hsl', 3 ) ) {
+			return esc_attr( $color );
+		}
+		return '#' . esc_attr( $color );
+	}
+}
+?>
 <?php if ( $row->settings->is_enable == 'yes' ): ?>
 
 	/* Icon Padding */
 	.fl-node-<?php echo esc_attr( $row->node ); ?> .bber-icon {
-		color: <?php echo ( $row->settings->er_bc_icon_color != '' ) ? '#' . esc_attr( $row->settings->er_bc_icon_color ) : 'inherit' ?>;
+		color: <?php echo bber_format_color( $row->settings->er_bc_icon_color, 'inherit' ); ?>;
 		font-size: <?php echo ( $row->settings->er_icon_size != '' ) ? esc_attr( $row->settings->er_icon_size ) . 'px' : 'inherit' ?>;
 		vertical-align: middle;
 		padding: 0 10px;
@@ -13,8 +27,7 @@
 		transition: all 0.3s ease-out;
 	}
 	.fl-node-<?php echo esc_attr( $row->node ); ?> .bber-expanded .bber-icon {
-		color: <?php echo ( $row->settings->er_ac_icon_color != '' ) ? '#' . esc_attr( $row->settings->er_ac_icon_color ) : 'inherit' 
-		?>;
+		color: <?php echo bber_format_color( $row->settings->er_ac_icon_color, 'inherit' ); ?>;
 	}
 
 	/* Image Padding */
@@ -22,10 +35,10 @@
 		padding: 0 10px;
 	}
 	.fl-node-<?php echo esc_attr( $row->node ); ?> .bb-er-row:hover .bber-icon {
-		color: <?php echo ( $row->settings->er_bc_icon_hcolor != '' ) ? '#' . esc_attr( $row->settings->er_bc_icon_hcolor ) : 'inherit' ?>;
+		color: <?php echo bber_format_color( $row->settings->er_bc_icon_hcolor, 'inherit' ); ?>;
 	}
 	.fl-node-<?php echo esc_attr( $row->node ); ?> .bber-expanded:hover .bber-icon {
-		color: <?php echo ( $row->settings->er_ac_icon_hcolor != '' ) ? '#' . esc_attr( $row->settings->er_ac_icon_hcolor ) : 'inherit' ?>;
+		color: <?php echo bber_format_color( $row->settings->er_ac_icon_hcolor, 'inherit' ); ?>;
 	}
 
 	<?php if ( ! FLBuilderModel::is_builder_active() ): ?>
@@ -38,9 +51,9 @@
 	.fl-node-<?php echo esc_attr( $row->node ); ?> .bb-er-row {
 		width:100%;
 		cursor: pointer;
-		color: #<?php echo ( $row->settings->er_bc_title_color != '' ) ? esc_attr( $row->settings->er_bc_title_color ) : '000' ; ?>;
+		color: <?php echo bber_format_color( $row->settings->er_bc_title_color, '#000' ); ?>;
 		<?php if( $row->settings->er_bg_type == 'color'): ?>
-			background-color:#<?php echo ( $row->settings->er_bc_bg_color != '' ) ? esc_attr( $row->settings->er_bc_bg_color ) : 'c7c7c7' ; ?>;
+			background-color: <?php echo bber_format_color( $row->settings->er_bc_bg_color, '#c7c7c7' ); ?>;
 		<?php elseif ($row->settings->er_bg_type == 'image' ): ?>
 			background-image: url(<?php echo isset( $row->settings->er_bc_bg_image_src ) ? esc_attr( $row->settings->er_bc_bg_image_src ) : null ; ?>);
 		<?php endif ?>
@@ -66,9 +79,9 @@
 
 	/* After click expand */
 	.fl-node-<?php echo esc_attr( $row->node ); ?> .bber-expanded {
-		color: <?php echo ( $row->settings->er_ac_title_color != '' ) ? '#' . esc_attr( $row->settings->er_ac_title_color ) : 'inherit' ; ?>;
+		color: <?php echo bber_format_color( $row->settings->er_ac_title_color, 'inherit' ); ?>;
 		<?php if ( $row->settings->er_bg_type == 'color' ): ?>
-			background-color: <?php echo ( $row->settings->er_ac_bg_color != '' ) ? '#' . esc_attr( $row->settings->er_ac_bg_color ) : '#c7c7c7' ; ?>;
+			background-color: <?php echo bber_format_color( $row->settings->er_ac_bg_color, '#c7c7c7' ); ?>;
 		<?php elseif ( $row->settings->er_bg_type == 'image' ): ?>
 			background-image: url(<?php echo isset( $row->settings->er_ac_bg_image_src ) ? esc_attr( $row->settings->er_ac_bg_image_src ) : null ; ?>);
 		<?php endif ?>
@@ -77,18 +90,18 @@
 
 	/* Expandable row hover */
 	.fl-node-<?php echo esc_attr( $row->node ); ?> .bb-er-row:hover {
-		color: <?php echo ( $row->settings->er_bc_title_hcolor != '' ) ? '#' . esc_attr( $row->settings->er_bc_title_hcolor ) : 'inherit' ; ?>;
+		color: <?php echo bber_format_color( $row->settings->er_bc_title_hcolor, 'inherit' ); ?>;
 		<?php if ( $row->settings->er_bg_type == 'color' ): ?>
-			background-color: <?php echo ( $row->settings->er_bc_bg_hcolor != '' ) ? '#' . esc_attr( $row->settings->er_bc_bg_hcolor ) : 'inherit' ; ?>;
+			background-color: <?php echo bber_format_color( $row->settings->er_bc_bg_hcolor, 'inherit' ); ?>;
 		<?php endif ?>
 	}
 
 	/* After click hover */
 	.fl-node-<?php echo esc_attr( $row->node ); ?> .bber-expanded:hover {
-		color: <?php echo ( $row->settings->er_ac_title_hcolor != '' ) ? '#' . esc_attr( $row->settings->er_ac_title_hcolor ) : 'inherit' ; ?>;
+		color: <?php echo bber_format_color( $row->settings->er_ac_title_hcolor, 'inherit' ); ?>;
 		<?php if ( $row->settings->er_bg_type == 'color' ): ?>
-			background-color: <?php echo ( $row->settings->er_ac_bg_hcolor != '' ) ? '#' . esc_attr( $row->settings->er_ac_bg_hcolor ) : '#c7c7c7' ; ?>;
-		<?php endif ?>	
+			background-color: <?php echo bber_format_color( $row->settings->er_ac_bg_hcolor, '#c7c7c7' ); ?>;
+		<?php endif ?>
 	}
 
 	/* Image icon size */
